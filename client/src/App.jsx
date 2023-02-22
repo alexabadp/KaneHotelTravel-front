@@ -5,6 +5,7 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./views/Home/Home";
 
 function App() {
+  console.log("Hola")
   return (
     <div className="App">
       <Routes>

@@ -1,0 +1,5 @@
+.activityContainer{
+    background-color: rgb(134, 134, 201);
+    display: flex;
+    width: 50%;
+}

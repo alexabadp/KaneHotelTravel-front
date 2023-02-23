@@ -29,7 +29,7 @@ const FilterOrderActivities = () => {
   const params = useParams();
 
   const [category, setCategory] = useState("");
-  const [rating, setPrice] = useState("");
+  const [price, setPrice] = useState("");
 
   const handlerCategory = (event) => {
     setCategory(event.value);
@@ -40,8 +40,8 @@ const FilterOrderActivities = () => {
   };
 
   useEffect(() => {
-    dispatch(getActivities(params.city, category, rating));
-  });
+    dispatch(getActivities(params.city, category, price));
+  }, [category, price]);
 
   return (
     <div>

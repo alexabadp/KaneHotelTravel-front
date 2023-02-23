@@ -4,12 +4,14 @@ import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import Home from "./views/Home/Home";
 import Hotels from "./components/Hotels/Hotels";
+import DetailCity from "./views/DetailCity/DetailCity";
 
 function App() { 
   return (
     <div className="App">
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/home/:city/" element={<DetailCity />} />
         <Route path="/home/:city/hotel" element={<Hotels />} />
       </Routes>
     </div>

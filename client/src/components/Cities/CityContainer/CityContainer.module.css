@@ -1,0 +1,16 @@
+.cityContainer{
+    width: 1200px;
+    margin: auto;
+}
+.cityContainerCard{
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+}
+.cityContainerWelcome{
+    margin: 20px;
+    width: 500px;
+    padding: 20px;
+    background-color: #FFFFFFBD;
+    border-radius: 10px;
+}

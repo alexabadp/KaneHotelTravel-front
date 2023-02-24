@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import ActivityCard from "../ActivityCard/ActivityCard";
+import style from "./ActivityContainer.module.css"
 
 import styles from "./ActivityContainer.module.css";
 
@@ -9,11 +10,15 @@ const ActivityContainer = (props) => {
   return (
     <div className={styles.activityContainer}>
       <h1>Activities</h1>
+<<<<<<< HEAD
       <div className={styles.activityContainerCards}>
+=======
+      <div >
+>>>>>>> 2b9907031be73447ace28d2a5d77c8beff95826e
         {activities?.length ? (
           activities.map((c) => {
             return (
-              <div key={c.id}>
+              <div key={c.id} className={style.activityContainer}>
                 <Link to={`/${c.city}/activity/${c.name}`}>
                   <ActivityCard
                     id={c.id}

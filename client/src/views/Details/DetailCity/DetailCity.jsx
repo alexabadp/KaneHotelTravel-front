@@ -18,11 +18,9 @@ const DetailCity = () => {
   }, []);
 
   return (
-    <div>
+    <div className={styles.detailCityBackground}>
       <HotelContainer hotels={detailCity.hotels} />
-
       <Link to={`/${city}/hotels`}>MAS HOTELES</Link>
-
       <ActivityContainer activities={detailCity.activities} />
       <Link to={`/${city}/activities`}>MAS ACTIVIDADES</Link>
     </div>

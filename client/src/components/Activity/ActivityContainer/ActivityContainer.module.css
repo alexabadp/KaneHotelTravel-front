@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .activityContainer {
   width: 100%;
   display: flex;
@@ -9,3 +10,10 @@
 .activityContainerCards {
   display: flex;
 }
+=======
+.activityContainer{
+    background-color: rgb(134, 134, 201);
+    display: flex;
+    width: 50%;
+}
+>>>>>>> 2b9907031be73447ace28d2a5d77c8beff95826e

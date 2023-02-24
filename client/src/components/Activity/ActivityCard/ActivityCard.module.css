@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .activityCardContainer {
   margin: 30px;
   padding: 0px;
@@ -37,3 +38,16 @@
 .activityCardInfo {
   width: 90%;
 }
+=======
+/* .activityCardContainer{
+
+} */
+.img{
+    margin: 20px;
+    width: 33%;
+}
+.img img{
+    margin: 20px;
+    width: 50%;
+}
+>>>>>>> 2b9907031be73447ace28d2a5d77c8beff95826e

@@ -41,7 +41,7 @@ const FilterOrderHotels = () => {
 
   useEffect(() => {
     dispatch(getHotels(params.city, category, rating));
-  });
+  }, []);
 
   return (
     <div>

@@ -16,6 +16,8 @@ const Activities = () => {
     dispatch(getActivities(params.city));
   }, []);
 
+  console.log(activities);
+
   return (
     <div>
       <FilterOrderActivities />

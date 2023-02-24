@@ -1,0 +1,11 @@
+.cityContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cityContainerCard {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+}

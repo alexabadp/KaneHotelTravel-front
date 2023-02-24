@@ -41,7 +41,7 @@ const FilterOrderActivities = () => {
 
   useEffect(() => {
     dispatch(getActivities(params.city, category, rating));
-  });
+  }, []);
 
   return (
     <div>

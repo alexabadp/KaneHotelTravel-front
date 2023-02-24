@@ -1,18 +1,24 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import HotelCard from "../HotelCard/HotelCard";
+import styles from "./HotelContainer.module.css";
 
 const HotelContainer = (props) => {
+  const params = useParams();
+
+  const city = params.city;
+  console.log(city);
+
   const hotels = props.hotels;
 
   return (
-    <div>
+    <div className={styles.hotelContainer}>
       <h1>Hoteles</h1>
-      <div>
+      <div className={styles.hotelContainerCards}>
         {hotels?.length ? (
           hotels.map((c) => {
             return (
               <div key={c.id}>
-                <Link to={`/${c.city}/hotel/${c.name}`}>
+                <Link to={`/${city}/hotel/${c.name}`}>
                   <HotelCard
                     id={c.id}
                     name={c.name}

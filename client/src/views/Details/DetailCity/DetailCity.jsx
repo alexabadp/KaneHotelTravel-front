@@ -11,11 +11,11 @@ const DetailCity = () => {
   const params = useParams();
   const detailCity = useSelector((state) => state.detailCity);
 
+  const city = params.city;
+
   useEffect(() => {
     dispatch(getDetailCity(params.city));
   }, []);
-
-  const city = params.city;
 
   return (
     <div>

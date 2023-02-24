@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 .cityContainer {
   display: flex;
   flex-direction: column;
@@ -10,21 +9,3 @@
   justify-content: space-around;
   text-align: center;
 }
-=======
-.cityContainer{
-    width: 1200px;
-    margin: auto;
-}
-.cityContainerCard{
-    display: flex;
-    justify-content: space-around;
-    text-align: center;
-}
-.cityContainerWelcome{
-    margin: 20px;
-    width: 500px;
-    padding: 20px;
-    background-color: #FFFFFFBD;
-    border-radius: 10px;
-}
->>>>>>> 2b9907031be73447ace28d2a5d77c8beff95826e

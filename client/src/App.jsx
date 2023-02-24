@@ -12,6 +12,7 @@ import DetailHotel from "./views/Details/DetailHotel/DetailHotel";
 import DetailActivity from "./views/Details/DetailACtivity/DetailActivity";
 import Hotels from "./components/Hotel/Hotels";
 import Activities from "./components/Activity/Activities";
+import DetailBooking from "./views/Details/DetailBooking/DetailBooking";
 axios.defaults.baseURL = "http://localhost:3001";
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/detail/booking" element={<DetailBooking />} />
         <Route path="/:city/" element={<DetailCity />} />
         <Route path="/:city/hotel/:hotel" element={<DetailHotel />} />
         <Route path="/:city/activity/:activity" element={<DetailActivity />} />

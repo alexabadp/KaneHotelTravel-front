@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getHotels } from "../../redux/actions";
@@ -9,7 +9,7 @@ const Hotels = () => {
   const dispatch = useDispatch();
   const params = useParams();
   const hotels = useSelector((state) => state.hotels);
-
+  
   useEffect(() => {
     dispatch(getHotels(params.city));
   }, []);

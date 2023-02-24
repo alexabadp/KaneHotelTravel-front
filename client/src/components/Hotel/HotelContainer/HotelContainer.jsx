@@ -36,6 +36,7 @@ const HotelContainer = (props) => {
           <h4>No se encontraron Hoteles</h4>
         )}
       </div>
+      <Link to={`/${city}/hotels`}>MAS HOTELES</Link>
     </div>
   );
 };

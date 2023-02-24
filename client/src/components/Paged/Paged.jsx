@@ -1,45 +1,52 @@
-import { useEffect, useState } from "react";
-import ReactPaginate from "react-paginate";
-import { useSelector } from "react-redux";
+import React from "react";
+import styles from "./Paged.module.css";
 
-// const Paged = ({ elementsPerPaged, elements, paged }) => {};
+export default function Paginado(props) {
+  let pageLength = [];
 
-export default function Paged() {
-  //   const { data } = props;
-
-  const data = useSelector((state) => state.hotels);
-
-  const [currentItems, setCurrentItems] = useState([]);
-  const [pageCount, setPageCount] = useState(0);
-  const [itemOffset, setItemOffset] = useState(0);
-  const itemsPerPage = 6;
-
-  useEffect(() => {
-    const endOffset = itemOffset + itemsPerPage;
-    setCurrentItems(data.slice(itemOffset, endOffset));
-    setPageCount(Math.ceil(data.length / itemsPerPage));
-  }, [itemOffset, itemsPerPage, data]);
-
-  const handlePageClick = (event) => {
-    const newOffset = (event.selected * itemsPerPage) % data.length;
-    setItemOffset(newOffset);
-  };
+  for (
+    let i = 1;
+    i <= Math.ceil(props.allItems?.length / props.itemsInPage);
+    i++
+  ) {
+    pageLength.push(i);
+  }
 
   return (
-    <>
-      <ReactPaginate
-        breakLabel="..."
-        nextLabel="next >"
-        onPageChange={handlePageClick}
-        pageRangeDisplayed={2}
-        pageCount={pageCount}
-        previousLabel="< previous"
-        renderOnZeroPageCount={null}
-        containerClassName="pagination"
-        pageLinkClassName="page-num"
-        previousLinkClassName="page-num"
-        activeLinkClassName="active"
-      />
-    </>
+    <div className={styles.pagedContainer}>
+      <ul className={styles.pagedContainerList}>
+        <li className={styles.pagedList}>
+          <a
+            onClick={(e) => {
+              props.currentPage > 1
+                ? props.paginado(props.currentPage - 1)
+                : props.paginado(props.currentPage);
+            }}
+          >
+            ←
+          </a>
+        </li>
+        {pageLength.length > 0 ? (
+          pageLength.map((p) => (
+            <li className={styles.pagedList} key={p}>
+              <a onClick={() => props.paginado(p)}>{p}</a>
+            </li>
+          ))
+        ) : (
+          <p>...</p>
+        )}
+        <li className={styles.pagedList}>
+          <a
+            onClick={() => {
+              props.currentPage < pageLength.length
+                ? props.paginado(props.currentPage + 1)
+                : props.paginado(props.currentPage);
+            }}
+          >
+            →
+          </a>
+        </li>
+      </ul>
+    </div>
   );
 }

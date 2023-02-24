@@ -4,6 +4,12 @@
   align-items: center;
 }
 
+.cityContainer h1 {
+  color: #000;
+  font-size: 48px;
+  margin: 10px;
+}
+
 .cityContainerCard {
   display: flex;
   justify-content: space-around;

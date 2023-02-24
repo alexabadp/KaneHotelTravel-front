@@ -9,6 +9,7 @@ const CityCard = (props) => {
       </div>
       <div className={styles.cardCityInfo}>
         <h2 className={styles.cardCityName}>{props.name}</h2>
+
         <div className={styles.cardCityPopularity}>
           <img src={iconHeart} />
           <p>{props.popularity}</p>

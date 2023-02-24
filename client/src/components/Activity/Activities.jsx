@@ -1,10 +1,9 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getActivities } from "../../redux/actions";
-
 import FilterOrderActivities from "../FiltersOrders/Activities/FilterOrderActivities";
-
+import Paged from "../Paged/Paged";
 import ActivityContainer from "./ActivityContainer/ActivityContainer";
 
 const Activities = () => {
@@ -18,12 +17,33 @@ const Activities = () => {
 
   console.log(activities);
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const [activitiesInPage, setActivitiesInPage] = useState(2);
+  const indexLastActivity = currentPage * activitiesInPage;
+  const indexFirstActivity = indexLastActivity - activitiesInPage;
+  const currentActivity = activities.activities?.slice(
+    indexFirstActivity,
+    indexLastActivity
+  );
+
+  const paged = (page) => {
+    setCurrentPage(page);
+  };
+
   return (
     <div>
       <FilterOrderActivities />
       <br />
       <br />
-      <ActivityContainer activities={activities.activities} />
+      {/* <ActivityContainer activities={activities.activities} /> */}
+      <ActivityContainer activities={currentActivity} />
+
+      <Paged
+        itemsInPage={activitiesInPage}
+        allItems={activities.activities}
+        paginado={paged}
+        currentPage={currentPage}
+      />
     </div>
   );
 };

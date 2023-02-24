@@ -4,9 +4,9 @@ import CityCard from "../CityCard/CityCard";
 import styles from "./CityContainer.module.css";
 
 const CityContainer = () => {
-  const dispatch = useDispatch();
-
   const cities = useSelector((state) => state.cities);
+
+  console.log(cities);
 
   return (
     <div className={styles.cityContainer}>
@@ -16,7 +16,7 @@ const CityContainer = () => {
           cities.map((e) => {
             return (
               <div key={e.id}>
-                <Link to={e.name}>
+                <Link to={`/${e.name}`}>
                   <CityCard
                     id={e.id}
                     image={e.image}

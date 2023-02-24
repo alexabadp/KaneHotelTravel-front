@@ -1,31 +1,31 @@
-@import url("https://fonts.googleapis,com/css2?family=Titillium+Web:wght@300;400;700&display=swap");
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  font-family: "Titillium Web", sans-serif;
+.pagedContainer {
+  margin-top: 20px;
 }
 
-.images {
+.pagedContainerList {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 1rem;
-  margin: 100px auto;
-  width: 60%;
-  min-height: 70vh;
 }
 
-.image {
-  width: 30%;
-  height: 30%;
-  color: #eee;
-  border-radius: 10px;
-  box-shadow: 3px 3px 3px #9e9e9e;
-  overflow: hidden;
+.pagedList {
+  list-style: none;
 }
 
-.image img {
-  display: block;
-  width: 100%;
+.pagedList a {
+  text-decoration: none;
+  font-size: 15px;
+  padding: 7px;
+  /* border: 1px solid black; */
+  border: none;
+  color: rgb(192, 186, 192);
+  background-color: rgb(84, 84, 87);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);
+  border-radius: 5px;
+  margin: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.pagedList a:hover {
+  background-color: #ff795b;
+  color: white;
 }

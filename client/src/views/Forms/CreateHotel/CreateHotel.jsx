@@ -8,6 +8,7 @@ import style from "./CreateHotel.module.css";
 import { Link } from "react-router-dom";
 import Input from "../../../components/Form/Input/Input";
 import Button from "../../../components/Form/Button/Button";
+import CreateNav from "../../../components/Form/CreateNav/CreateNav";
 
 const CreateHotel = () => {
   const [record, setRecord] = useState({});
@@ -66,7 +67,7 @@ const CreateHotel = () => {
     </p>
   ) : (
     <div className={style.formContainer}>
-      {/* <CreateNav value="Regresar" url="/"/> */}
+      <CreateNav value="Regresar" url="/" />
       <form onSubmit={formik.handleSubmit}>
         <h3 className={style.formNote}>Campos con * son obligatorios.</h3>
         {record.error && <h2 className="errorMessage">{record.error}</h2>}

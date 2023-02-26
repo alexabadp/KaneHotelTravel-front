@@ -9,6 +9,8 @@ import CheckoutForm from "../../../components/CheckoutForm/CheckoutForm"
 const stripePromise = loadStripe(import.meta.env.VITE_KEY_STRIPE)
 
 const DetailHotel = () => {
+  const amountHardCode = 10;//10usd
+  const descriptionHardCode = "Descripcion del pago";//10usd
   const dispatch = useDispatch();
   const params = useParams();
   const detailHotel = useSelector((state) => state.detailHotel);
@@ -28,7 +30,7 @@ const DetailHotel = () => {
       <h4>{detailHotel.services}</h4>
       <h4>{detailHotel.description}</h4>
       <Elements stripe={stripePromise}>
-        <CheckoutForm />
+        <CheckoutForm totalPayment={amountHardCode} descriptionPayment={descriptionHardCode}/>
       </Elements>
     </div>
   );

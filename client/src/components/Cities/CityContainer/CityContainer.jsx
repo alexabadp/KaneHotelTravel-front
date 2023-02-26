@@ -15,16 +15,14 @@ const CityContainer = () => {
         {cities.length ? (
           cities.map((e) => {
             return (
-              <div key={e.id}>
-                <Link to={`/${e.name}`}>
-                  <CityCard
-                    id={e.id}
-                    image={e.image}
-                    name={e.name}
-                    popularity={e.popularity}
-                  />
-                </Link>
-              </div>
+              <Link key={e.id} to={`/${e.name}`}>
+                <CityCard
+                  id={e.id}
+                  image={e.image}
+                  name={e.name}
+                  popularity={e.popularity}
+                />
+              </Link>
             );
           })
         ) : (

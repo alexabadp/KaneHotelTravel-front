@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom";
 import Select from "react-select";
 import { getActivities } from "../../../redux/actions";
 
+import style from "./FilterOrderActivities.module.css";
+
 const options1 = [
   { label: "Economic", value: "Economic" },
   {
@@ -43,13 +45,28 @@ const FilterOrderActivities = () => {
     dispatch(getActivities(params.city, category, price));
   }, [category, price]);
 
+  const handlerButton = () => {
+    window.history.back();
+  };
+
   return (
-    <div>
-      <label>Category</label>
-      <Select options={options1} onChange={handlerCategory} />
-      <br />
-      <br />
-      <Select options={options2} onChange={handlerPrice} />
+    <div className={style.filterOrderActivities}>
+      <div className={style.filterOrderActivitiesContainer}>
+        <div className={style.filterOrderActivitiesLogo}>LOGO</div>
+        <div className={style.filterOrderActivitiesTypes}>
+          <label>Category</label>
+          <hr />
+          <Select options={options1} onChange={handlerCategory} />
+        </div>
+        <div className={style.filterOrderActivitiesTypes}>
+          <label>Price</label>
+          <hr />
+          <Select options={options2} onChange={handlerPrice} />
+        </div>
+        <div className={style.filterOrderActivitiesButton}>
+          <button onClick={handlerButton}>REGRESAR</button>
+        </div>
+      </div>
     </div>
   );
 };

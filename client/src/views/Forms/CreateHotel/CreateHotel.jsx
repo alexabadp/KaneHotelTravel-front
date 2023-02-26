@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { getCities } from "../../../redux/actions";
+import { getCities, getDetailHotel } from "../../../redux/actions";
 import styleForm from "./Form.module.css";
 import style from "./CreateHotel.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Input from "../../../components/Form/Input/Input";
 import Button from "../../../components/Form/Button/Button";
 import CreateNav from "../../../components/Form/CreateNav/CreateNav";
@@ -14,8 +14,6 @@ const CreateHotel = () => {
   const [record, setRecord] = useState({});
   const dispatch = useDispatch();
   const allCities = useSelector((state) => state.cities);
-
-  console.log(record);
 
   useEffect(() => {
     dispatch(getCities());
@@ -61,9 +59,17 @@ const CreateHotel = () => {
     },
   });
 
+  const navigate = useNavigate();
+
+  // const handlerSubmit = () => {
+  //   console.log("Se disparo la accion para obtener el detalle del Hotel");
+  //   navigate(`/${record.response?.city}/hotel/${record.response?.name}`);
+  // };
+
   return record.registered === true ? (
     <p>
       Vamos a cargar el componente HotelDetail {JSON.stringify(record.response)}{" "}
+      {/* {handlerSubmit()} */}
     </p>
   ) : (
     <div className={style.formContainer}>

@@ -1,11 +1,7 @@
 import CityContainer from "./CityContainer/CityContainer";
 
 const Cities = () => {
-  return (
-    <div>
-      <CityContainer />
-    </div>
-  );
+  return <CityContainer />;
 };
 
 export default Cities;

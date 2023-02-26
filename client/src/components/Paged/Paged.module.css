@@ -4,6 +4,7 @@
 
 .pagedContainerList {
   display: flex;
+  justify-content: center;
 }
 
 .pagedList {

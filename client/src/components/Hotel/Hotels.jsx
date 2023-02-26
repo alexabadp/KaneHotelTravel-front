@@ -5,6 +5,7 @@ import { getHotels } from "../../redux/actions";
 import FilterOrderHotels from "../FiltersOrders/Hotels/FilterOrderHotels";
 import Paged from "../Paged/Paged";
 import HotelContainer from "./HotelContainer/HotelContainer";
+import style from "./Hotels.module.css";
 
 const Hotels = () => {
   const dispatch = useDispatch();
@@ -16,7 +17,7 @@ const Hotels = () => {
   }, []);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [hotelsInPage, setHotelsInPage] = useState(2);
+  const [hotelsInPage, setHotelsInPage] = useState(6);
   const indexLastHotel = currentPage * hotelsInPage;
   const indexFirstHotel = indexLastHotel - hotelsInPage;
   const currentHotel = hotels.hotels?.slice(indexFirstHotel, indexLastHotel);
@@ -28,17 +29,16 @@ const Hotels = () => {
   return (
     <div>
       <FilterOrderHotels />
-      <br />
-      <br />
-      {/* <HotelContainer hotels={hotels.hotels} /> */}
-      <HotelContainer hotels={currentHotel} />
 
-      <Paged
-        itemsInPage={hotelsInPage}
-        allItems={hotels.hotels}
-        paginado={paged}
-        currentPage={currentPage}
-      />
+      <HotelContainer hotels={currentHotel} />
+      <div className={style.activitiesPaged}>
+        <Paged
+          itemsInPage={hotelsInPage}
+          allItems={hotels.hotels}
+          paginado={paged}
+          currentPage={currentPage}
+        />
+      </div>
     </div>
   );
 };

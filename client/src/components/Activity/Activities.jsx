@@ -5,6 +5,7 @@ import { getActivities } from "../../redux/actions";
 import FilterOrderActivities from "../FiltersOrders/Activities/FilterOrderActivities";
 import Paged from "../Paged/Paged";
 import ActivityContainer from "./ActivityContainer/ActivityContainer";
+import style from "./Activities.module.css";
 
 const Activities = () => {
   const dispatch = useDispatch();
@@ -15,10 +16,8 @@ const Activities = () => {
     dispatch(getActivities(params.city));
   }, []);
 
-  console.log(activities);
-
   const [currentPage, setCurrentPage] = useState(1);
-  const [activitiesInPage, setActivitiesInPage] = useState(2);
+  const [activitiesInPage, setActivitiesInPage] = useState(6);
   const indexLastActivity = currentPage * activitiesInPage;
   const indexFirstActivity = indexLastActivity - activitiesInPage;
   const currentActivity = activities.activities?.slice(
@@ -33,17 +32,17 @@ const Activities = () => {
   return (
     <div>
       <FilterOrderActivities />
-      <br />
-      <br />
-      {/* <ActivityContainer activities={activities.activities} /> */}
+
       <ActivityContainer activities={currentActivity} />
 
-      <Paged
-        itemsInPage={activitiesInPage}
-        allItems={activities.activities}
-        paginado={paged}
-        currentPage={currentPage}
-      />
+      <div className={style.activitiesPaged}>
+        <Paged
+          itemsInPage={activitiesInPage}
+          allItems={activities.activities}
+          paginado={paged}
+          currentPage={currentPage}
+        />
+      </div>
     </div>
   );
 };

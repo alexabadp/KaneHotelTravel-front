@@ -1,21 +1,24 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import ActivityCard from "../ActivityCard/ActivityCard";
 import style from "./ActivityContainer.module.css";
 
-import styles from "./ActivityContainer.module.css";
-
 const ActivityContainer = (props) => {
+  const params = useParams();
+
+  const city = params.city;
+  // console.log(city);
+
   const activities = props.activities;
 
   return (
-    <div className={styles.activityContainer}>
+    <div className={style.activityContainer}>
       <h1>Activities</h1>
-      <div className={styles.activityContainerCards}>
+      <div className={style.activityContainerCards}>
         {activities?.length ? (
           activities.map((c) => {
             return (
               <div key={c.id} className={style.activityContainer}>
-                <Link to={`/${c.city}/activity/${c.name}`}>
+                <Link to={`/${city}/activity/${c.name}`}>
                   <ActivityCard
                     id={c.id}
                     name={c.name}

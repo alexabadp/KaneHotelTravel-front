@@ -12,12 +12,9 @@ const ActivityCard = (props) => {
         <h4>{props.name}</h4>
         <h4>{props.category}</h4>
         <h4>{props.price}</h4>
-        <h4>{props.duration}</h4>
-        <h4>{props.description}</h4>
-        <button
-          to={`/activity/${props.id}`}
-          className={styles.activityCardButton}
-        >
+        {/* <h4>{props.duration}</h4>
+        <h4>{props.description}</h4> */}
+        <button to={`/`} className={styles.activityCardButton}>
           Saber más
         </button>
       </div>

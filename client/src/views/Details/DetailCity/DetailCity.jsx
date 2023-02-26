@@ -1,4 +1,4 @@
-import styles from "./DetailCity.module.css";
+import style from "./DetailCity.module.css";
 import { Link, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getDetailCity } from "../../../redux/actions";
@@ -18,11 +18,16 @@ const DetailCity = () => {
   }, []);
 
   return (
-    <div className={styles.detailCityBackground}>
+    <div className={style.detailCityBackground}>
       <HotelContainer hotels={detailCity.hotels} />
-      {/* <Link to={`/${city}/hotels`}>MAS HOTELES</Link> */}
+      <div className={style.detailCityMore}>
+        <Link to={`/${city}/hotels`}>MORE HOTELS {"-->"} </Link>
+      </div>
+
       <ActivityContainer activities={detailCity.activities} />
-      <Link to={`/${city}/activities`}>MAS ACTIVIDADES</Link>
+      <div className={style.detailCityMore}>
+        <Link to={`/${city}/activities`}>MAS ACTIVIDADES {"-->"}</Link>
+      </div>
     </div>
   );
 };

@@ -6,7 +6,6 @@ const HotelContainer = (props) => {
   const params = useParams();
 
   const city = params.city;
-  console.log(city);
 
   const hotels = props.hotels;
 
@@ -36,7 +35,6 @@ const HotelContainer = (props) => {
           <h4>No se encontraron Hoteles</h4>
         )}
       </div>
-      <Link to={`/${city}/hotels`}>MAS HOTELES</Link>
     </div>
   );
 };

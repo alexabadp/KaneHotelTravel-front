@@ -37,8 +37,8 @@ const CreateHotel = () => {
 
     onSubmit: (formData) => {
       // fetch(`${import.meta.env.VITE_URL_BACKEND}/hotel`, {
-      // fetch(`https://backend-kanehoteltravel-production.up.railway.app/hotel`, {
-      fetch(`http://localhost:3001/hotel`, {
+      fetch(`https://backend-kanehoteltravel-production.up.railway.app/hotel`, {
+      // fetch(`http://localhost:3001/hotel`, {
         method: "POST",
         body: JSON.stringify({ ...formData, rooms: ["Habitación Deluxe"] }),
         headers: { "Content-type": "application/json; charset=UTF-8" },

@@ -9,7 +9,14 @@ import DetailActivity from "./views/Details/DetailACtivity/DetailActivity";
 import Hotels from "./components/Hotel/Hotels";
 import Activities from "./components/Activity/Activities";
 import CreateHotel from "./views/Forms/CreateHotel/CreateHotel";
-axios.defaults.baseURL = "http://localhost:3001";
+
+import { loadStripe } from "@stripe/stripe-js";
+
+const server = loadStripe(import.meta.env.SERVER);
+
+axios.defaults.baseURL = server;
+
+// axios.defaults.baseURL = "http://localhost:3001";
 
 function App() {
   return (

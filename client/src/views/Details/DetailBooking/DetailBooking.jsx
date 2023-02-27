@@ -3,6 +3,7 @@ import "react-calendar/dist/Calendar.css";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
+import Select from "react-select"
 import Calendar from "react-calendar";
 import dayjs from "dayjs";
 import React from "react";
@@ -24,7 +25,6 @@ const DetailBooking = () => {
   const amountHardCode = 10; //10usd
   const descriptionHardCode = "Descripcion del pago"; //10usd
   const [dateValue, setCheckIn] = useState(new Date());
-  const [array, setArray] = useState([])
   const [data, setData] = useState({
     name: "",
     lastname: "",
@@ -35,7 +35,7 @@ const DetailBooking = () => {
     checkin: "",
     checkout: "",
     rooms: [],
-    price: "$150",
+    price: 0,
   });
   // const stripePromise = loadStripe(import.meta.env.VITE_KEY_STRIPE)
   const stripePromise = loadStripe(
@@ -80,11 +80,13 @@ const DetailBooking = () => {
   const handlerInputCheckOut = () => {
     setData({ ...data, checkout: formatDate(dateValue[1]) });
   };
+  let totalPrice = 0
 
+  const datosRoom = location.state.rooms.map((e) => {
+    return {label: e.name, value: e.name}
+  })
   const handlerOption = (event) => {
-    const roomName = event.target.value;
-    console.log(roomName)
-    const datosRoom = location.state.rooms;
+    const roomName = event.value;    
     let newArray = data.rooms;
     let find = newArray?.filter(e => e === roomName)
     if(find.length > 0){
@@ -92,11 +94,32 @@ const DetailBooking = () => {
     } else {
       setData({...data, rooms: [...data.rooms, roomName]})
     }
-    const arrayRoom = datosRoom?.filter(e => e.name.includes(data.rooms))
-    console.log(arrayRoom, "arrayRoom")
+    
   };
-  console.log(data.rooms, "rooms");
-
+//   function priceTotal(){
+//     const array = location.state.rooms
+//     const nameRoom = data.rooms
+//     for(let i = 0; i < nameRoom.length; i++){
+//       for(let obj of array){        
+//        if(obj.name == nameRoom[i]){
+//         return totalPrice = totalPrice + obj.price
+//        }     
+//     }
+//   }
+  
+// }
+// priceTotal()
+ 
+  
+  
+ 
+  const handleDelete = (event) => {
+    setData({
+      ...data,
+      rooms: data.rooms.slice().filter((e) => e !== event),
+    });
+  };
+  
   return (
     <div className={style.containerBookingGeneral}>
       <div className={style.detailBookingContainer}>
@@ -163,16 +186,11 @@ const DetailBooking = () => {
 
             <Form.Group as={Col} controlId="formGridState">
               <Form.Label className={style.titleBooking}>Rooms</Form.Label>
-              <Form.Select
-                onChange={(e) => {
-                  handlerOption(e);
-                }}
-              >
-                <option value="" key="1">Choice Room</option>
-                {location.state.rooms.map((e) => {
-                  return <option key={e.id}>{e.name}</option>;
-                })}
-              </Form.Select>
+              <Select 
+                options={datosRoom}
+                placeholder="Choice Room"
+                onChange={handlerOption}              
+              />
             </Form.Group>
 
             <Form.Label className={style.titleBooking}>Booking</Form.Label>
@@ -226,11 +244,11 @@ const DetailBooking = () => {
                       <p className={style.titleBooking}>
                         Rooms:{" "}
                         {data.rooms.map((e) => {
-                          return <p key={e[0].id}>{e[0].name}</p>;
+                          return <p key={e}>{e}</p>;
                         })}
                       </p>
                       <p className={style.titleBooking}>
-                        Total Price: {data.price}
+                        Total Price: ${data.price}
                       </p>
                     </ul>
                   </Modal.Body>
@@ -243,12 +261,14 @@ const DetailBooking = () => {
               </>
             </div>
             <div>
+              <Form className={style.stripe}>
               <Elements stripe={stripePromise}>
                 <CheckoutForm
                   totalPayment={amountHardCode}
                   descriptionPayment={descriptionHardCode}
                 />
               </Elements>
+              </Form>
             </div>
             {/* <Button className={style.button} variant="primary" type="submit">
               Submit
@@ -264,13 +284,20 @@ const DetailBooking = () => {
           <div className={style.hotel}>
             {data.rooms?.map((e) => {
               return (
-                <div key={e[0]?.id}>
+                <div key={e}>
                   <div className={style.title1}>
-                    <h2>{e[0]?.name}</h2>
+                  <button
+                  type="button"
+                  onClick={() => handleDelete(e)}
+                  className={style.btnDelete}
+                >
+                  X
+                </button>
+                    <h2>{e}</h2>
                   </div>
-                  <div className={style.image}>
+                  {/* <div className={style.image}>
                     <img src={e[0]?.image} alt="Imagen" />
-                  </div>
+                  </div> */}
                 </div>
               );
             })}
@@ -280,4 +307,5 @@ const DetailBooking = () => {
     </div>
   );
 };
+
 export default DetailBooking;

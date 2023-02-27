@@ -12,11 +12,11 @@ import CreateHotel from "./views/Forms/CreateHotel/CreateHotel";
 
 import { loadStripe } from "@stripe/stripe-js";
 
-const server = loadStripe(import.meta.env.SERVER);
+// const server = loadStripe(import.meta.env.SERVER);
 
-axios.defaults.baseURL = server;
+// axios.defaults.baseURL = server;
 
-// axios.defaults.baseURL = "http://localhost:3001";
+axios.defaults.baseURL = "http://localhost:3001";
 
 function App() {
   return (

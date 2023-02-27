@@ -9,8 +9,11 @@ import DetailActivity from "./views/Details/DetailACtivity/DetailActivity";
 import Hotels from "./components/Hotel/Hotels";
 import Activities from "./components/Activity/Activities";
 import CreateHotel from "./views/Forms/CreateHotel/CreateHotel";
+import FormActividad  from "./components/FormActividad/FormActividad";
 import DetailBooking from "./views/Details/DetailBooking/DetailBooking";
-axios.defaults.baseURL = "http://localhost:3001";
+
+axios.defaults.baseURL = "http://localhost:3001/"
+// axios.defaults.baseURL = "https://backend-kanehoteltravel-production.up.railway.app/";
 
 function App() {
   return (
@@ -24,6 +27,7 @@ function App() {
         <Route path="/detail/booking" element={<DetailBooking />} />
         <Route path="/:city/activities" element={<Activities />} />
         <Route path="/backoffice/hotel/create" element={<CreateHotel />} />
+        <Route path="/activity/register/:activity" element={<FormActividad/>}/>
       </Routes>
     </div>
   );

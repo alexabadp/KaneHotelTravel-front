@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getDetailActivity } from "../../../redux/actions";
+import { Link } from "react-router-dom";
 
 const DetailActivity = () => {
   const dispatch = useDispatch();
@@ -21,6 +22,7 @@ const DetailActivity = () => {
       <h4>{detailActivity.duration}</h4>
       <h4>{detailActivity.price}</h4>
       <h4>{detailActivity.description}</h4>
+      <Link to={`/activity/register/${params.activity}`}>Register</Link>
     </div>
   );
 };

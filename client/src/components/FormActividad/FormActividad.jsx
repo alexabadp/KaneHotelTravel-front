@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getDetailActivity } from "../../redux/actions";
 
 
-export function FormActividad(){
+function FormActividad(){
 
     const arrayCompras = []
 
@@ -158,3 +158,5 @@ export function FormActividad(){
         <button onClick={() => navigate(-1)} className={styles.buttons}>Volver</button>
     </div>)
 }
+
+export default FormActividad;

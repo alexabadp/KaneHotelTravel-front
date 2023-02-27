@@ -1,7 +1,6 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import Home from "./views/Home/Home";
-
 import axios from "axios";
 import DetailCity from "./views/Details/DetailCity/DetailCity";
 import DetailHotel from "./views/Details/DetailHotel/DetailHotel";
@@ -10,13 +9,7 @@ import Hotels from "./components/Hotel/Hotels";
 import Activities from "./components/Activity/Activities";
 import CreateHotel from "./views/Forms/CreateHotel/CreateHotel";
 
-import { loadStripe } from "@stripe/stripe-js";
-
-const server = loadStripe(import.meta.env.SERVER);
-
-axios.defaults.baseURL = server;
-
-// axios.defaults.baseURL = "http://localhost:3001";
+axios.defaults.baseURL = "http://localhost:3001";
 
 function App() {
   return (

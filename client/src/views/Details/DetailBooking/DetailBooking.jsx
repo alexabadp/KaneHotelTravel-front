@@ -12,13 +12,19 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import style from "./DetailBooking.module.css";
 import Modal from "react-bootstrap/Modal";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+import CheckoutForm from "../../../components/CheckoutForm/CheckoutForm";
 
 const DetailBooking = () => {
   const location = useLocation();
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const amountHardCode = 10; //10usd
+  const descriptionHardCode = "Descripcion del pago"; //10usd
   const [dateValue, setCheckIn] = useState(new Date());
+  const [array, setArray] = useState([])
   const [data, setData] = useState({
     name: "",
     lastname: "",
@@ -31,6 +37,10 @@ const DetailBooking = () => {
     rooms: [],
     price: "$150",
   });
+  // const stripePromise = loadStripe(import.meta.env.VITE_KEY_STRIPE)
+  const stripePromise = loadStripe(
+    "pk_test_51MeUSYJo5kAZGuTWTiN6NsA5FRMyqId8smjQOgEObJw8rbCeHijt3N58dI0J5HfF48lROYvHLIzLE2QjAk8skODA00D3KU6iNb"
+  );
   const formatDate = (date) => {
     return dayjs(date).format("DD/MM/YYYY");
   };
@@ -73,18 +83,17 @@ const DetailBooking = () => {
 
   const handlerOption = (event) => {
     const roomName = event.target.value;
-    const datos = location.state.rooms;
-    const infoRoom = datos.flat(3);
-    const info = infoRoom?.filter((e) => e.name === roomName);
-    const copia = info?.filter((e) => {
-      let element = [...data.rooms];
-      if (element.length) {
-        for (let obj of element) {
-          if (e.name !== obj.name) return obj;
-        }
-      } else return e;
-    });
-    setData({ ...data, rooms: [...data.rooms, copia] });
+    console.log(roomName)
+    const datosRoom = location.state.rooms;
+    let newArray = data.rooms;
+    let find = newArray?.filter(e => e === roomName)
+    if(find.length > 0){
+      setData({...data})
+    } else {
+      setData({...data, rooms: [...data.rooms, roomName]})
+    }
+    const arrayRoom = datosRoom?.filter(e => e.name.includes(data.rooms))
+    console.log(arrayRoom, "arrayRoom")
   };
   console.log(data.rooms, "rooms");
 
@@ -159,7 +168,7 @@ const DetailBooking = () => {
                   handlerOption(e);
                 }}
               >
-                <option value="Choice Room" key="1"></option>
+                <option value="" key="1">Choice Room</option>
                 {location.state.rooms.map((e) => {
                   return <option key={e.id}>{e.name}</option>;
                 })}
@@ -189,9 +198,17 @@ const DetailBooking = () => {
             </div>
             <div className={style.modal}>
               <>
-                <Button variant="primary" onClick={handleShow}>
+              <Link to={`/`}>
+                  <Button
+                    className={style.button}
+                    variant="primary"
+                    type="submit">
+                    Cancel
+                  </Button>
+                </Link>
+                <Button variant="primary" onClick={handleShow} className={style.button}>
                   Detail Total
-                </Button>
+                </Button>              
                 <Modal show={show} onHide={handleClose}>
                   <Modal.Header closeButton>
                     <Modal.Title>Booking Summary</Modal.Title>
@@ -225,14 +242,17 @@ const DetailBooking = () => {
                 </Modal>
               </>
             </div>
-            <Link to={`/`}>
-              <Button className={style.button} variant="primary" type="submit">
-                Cancel
-              </Button>
-            </Link>
-            <Button className={style.button} variant="primary" type="submit">
+            <div>
+              <Elements stripe={stripePromise}>
+                <CheckoutForm
+                  totalPayment={amountHardCode}
+                  descriptionPayment={descriptionHardCode}
+                />
+              </Elements>
+            </div>
+            {/* <Button className={style.button} variant="primary" type="submit">
               Submit
-            </Button>
+            </Button> */}
           </Form>
         </div>
         <div className={style.hotel}>

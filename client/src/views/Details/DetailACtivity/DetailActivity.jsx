@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getDetailActivity } from "../../../redux/actions";
+import styles from "./DetailActivity.module.css"
 
 const DetailActivity = () => {
   const dispatch = useDispatch();
@@ -12,16 +13,28 @@ const DetailActivity = () => {
     dispatch(getDetailActivity(params.activity));
   }, []);
   return (
-    <div>
-      <div>
-        <img src={detailActivity.image} alt="" />
+    
+    <div className={styles.containerDivDetail}>
+
+      <div className={styles.containerDetailActivity}>
+
+        <h4 className={styles.title}>{detailActivity.name}</h4>
+
+        <div className={styles.containerDivImg}>
+          <img src={detailActivity.image} alt="" />
+        </div>
+
+        <div className={styles.containerDescription}>
+          <h4>{"Category: " +  detailActivity.category + ""}</h4>
+          <h4>{"Duration: " +  detailActivity.duration + " Min"}</h4>
+          <h4>{"Price: $" +  detailActivity.price}</h4>
+          <p>{detailActivity.description + "."}</p>
+        </div>
+
       </div>
-      <h4>{detailActivity.name}</h4>
-      <h4>{detailActivity.category}</h4>
-      <h4>{detailActivity.duration}</h4>
-      <h4>{detailActivity.price}</h4>
-      <h4>{detailActivity.description}</h4>
+
     </div>
+
   );
 };
 

@@ -6,6 +6,7 @@ import FilterOrderActivities from "../FiltersOrders/Activities/FilterOrderActivi
 import Paged from "../Paged/Paged";
 import ActivityContainer from "./ActivityContainer/ActivityContainer";
 import style from "./Activities.module.css";
+import NavBar from "../NavBar/NavBar";
 
 const Activities = () => {
   const dispatch = useDispatch();
@@ -31,6 +32,8 @@ const Activities = () => {
 
   return (
     <div>
+      <NavBar />
+
       <FilterOrderActivities />
 
       <ActivityContainer activities={currentActivity} />

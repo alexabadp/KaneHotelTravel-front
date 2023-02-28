@@ -3,8 +3,11 @@ import { Link, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getDetailCity } from "../../../redux/actions";
 import { useEffect } from "react";
+import NavBar from "../../../components/NavBar/NavBar";
+
 import HotelContainer from "../../../components/Hotel/HotelContainer/HotelContainer";
 import ActivityContainer from "../../../components/Activity/ActivityContainer/ActivityContainer";
+import FilterCities from "../../../components/FiltersOrders/Cities/FilterCities";
 
 const DetailCity = () => {
   const dispatch = useDispatch();
@@ -19,6 +22,8 @@ const DetailCity = () => {
 
   return (
     <div className={style.detailCityBackground}>
+      <NavBar />
+      <FilterCities />
       <HotelContainer hotels={detailCity.hotels} />
       <div className={style.detailCityMore}>
         <Link to={`/${city}/hotels`}>MORE HOTELS {"-->"} </Link>

@@ -1,11 +1,27 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Select from "react-select";
 import { getHotels } from "../../../redux/actions";
 import style from "./FilterOrderHotels.module.css";
 
+const options = [
+  {
+    label: "Puerto Vallarta",
+    value: "Puerto Vallarta",
+  },
+  {
+    label: "Cancun",
+    value: "Cancun",
+  },
+  {
+    label: "Playa Paraíso, Tulum",
+    value: "Playa Paraíso, Tulum",
+  },
+];
+
 const options1 = [
+  { label: "All", value: "" },
   { label: "Economic", value: "Economic" },
   {
     label: "Regular",
@@ -27,10 +43,12 @@ const options2 = [
 
 const FilterOrderHotels = () => {
   const dispatch = useDispatch();
+  const navigateTo = useNavigate();
   const params = useParams();
 
   const [category, setCategory] = useState("");
   const [rating, setRating] = useState("");
+  const [city, setCity] = useState("");
 
   const handlerCategory = (event) => {
     setCategory(event.value);
@@ -40,18 +58,30 @@ const FilterOrderHotels = () => {
     setRating(event.value);
   };
 
+  const handlerCity = (event) => {
+    setCity(event.value);
+    navigateTo(`/${event.value}/hotels`);
+  };
+
+  console.log(params.city);
+
   useEffect(() => {
     dispatch(getHotels(params.city, category, rating));
-  }, [category, rating]);
-
-  const handlerButton = () => {
-    window.history.back();
-  };
+    // dispatch(getHotels(city, category, rating));
+  }, [category, rating, params, city]);
 
   return (
     <div className={style.filterOrderHotels}>
       <div className={style.filterOrderHotelsContainer}>
-        <div className={style.filterOrderHotelsLogo}>LOGO</div>
+        <div className={style.filterOrderHotelsTypes}>
+          <label>City</label>
+          <hr />
+          <Select
+            defaultValue={{ label: params.city, value: params.city }}
+            options={options}
+            onChange={handlerCity}
+          />
+        </div>
         <div className={style.filterOrderHotelsTypes}>
           <label>Category</label>
           <hr />
@@ -61,9 +91,6 @@ const FilterOrderHotels = () => {
           <label>Rating</label>
           <hr />
           <Select options={options2} onChange={handlerRating} />
-        </div>
-        <div className={style.filterOrderHotelsButton}>
-          <button onClick={handlerButton}>REGRESAR</button>
         </div>
       </div>
     </div>

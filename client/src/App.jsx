@@ -1,5 +1,5 @@
 import "./App.css";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 import { Route, Routes } from "react-router-dom";
 import Home from "./views/Home/Home";
 import axios from "axios";
@@ -11,7 +11,8 @@ import Activities from "./components/Activity/Activities";
 import CreateHotel from "./views/Forms/CreateHotel/CreateHotel";
 import DetailBooking from "./views/Details/DetailBooking/DetailBooking";
 // axios.defaults.baseURL = "http://localhost:3001";
-axios.defaults.baseURL = "https://backend-kanehoteltravel-production.up.railway.app/"
+axios.defaults.baseURL =
+  "https://backend-kanehoteltravel-production.up.railway.app/";
 
 function App() {
   return (

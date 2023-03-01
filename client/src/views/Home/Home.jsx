@@ -8,6 +8,8 @@ import { Profile } from "../../components/Login-Logout/Profile/Profile";
 import { getCities } from "../../redux/actions";
 import style from "./Home.module.css";
 import { useAuth0 } from "@auth0/auth0-react";
+import NavBar from "../../components/NavBar/NavBar";
+
 const Home = () => {
   const dispatch = useDispatch();
   const { isAuthenticated } = useAuth0();
@@ -17,26 +19,23 @@ const Home = () => {
 
   return (
     <div className={style.homeContainer}>
+      <NavBar />
       <div className={style.homeContainerWelcome}>
         <div className={style.homeWelcome}>
-          {/* <h1>¡Bienvenido!</h1>
-<p>Encuentra el lugar perfecto para pasar tus vacaciones!</p> */}
           {isAuthenticated ? (
-            <>
+            <div>
               <h1>¡Bienvenido!</h1>
               <Profile />
               <p>Encuentra el lugar perfecto para pasar tus vacaciones!</p>
               <div>
-                {" "}
-                <LogoutButton />{" "}
+                <LogoutButton />
               </div>
-            </>
+            </div>
           ) : (
             <div>
-              {" "}
               <h1>¡Bienvenido!</h1>
               <p>Encuentra el lugar perfecto para pasar tus vacaciones!</p>
-              <LoginButton />{" "}
+              <LoginButton />
             </div>
           )}
           <br />

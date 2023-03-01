@@ -3,27 +3,19 @@
 }
 
 .filterOrderActivitiesContainer {
-  /* max-width: 800px; */
-  max-width: 80%;
+  max-width: 60%;
   padding: 20px 0;
   margin: auto;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  /* grid-template-columns: 1fr 2fr 2fr 1fr; */
   row-gap: 20px;
-}
-
-.filterOrderActivitiesLogo {
-  margin: auto;
-  font-size: 28px;
-  font-weight: bold;
 }
 
 .filterOrderActivitiesTypes {
   width: 250px;
   align-items: center;
   text-align: center;
-  margin: auto;
+  margin: 20px auto;
 }
 
 .filterOrderActivitiesButton {

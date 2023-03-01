@@ -3,18 +3,18 @@ import iconHeart from "../../../images/Icon-Heart.png";
 
 const CityCard = (props) => {
   return (
-    <div className={styles.cardCityContainer}>
-      <div className={styles.cardCityImage}>
+    <div className={styles.cityCardContainer}>
+      <div className={styles.cityCardImage}>
         <img src={props.image} alt="" />
       </div>
-      <div className={styles.cardCityInfo}>
-        <h2 className={styles.cardCityName}>{props.name}</h2>
+      <div className={styles.cityCardInfo}>
+        <h4>{props.name}</h4>
 
-        <div className={styles.cardCityPopularity}>
+        <div className={styles.cityCardPopularity}>
           <img src={iconHeart} />
           <p>{props.popularity}</p>
         </div>
-        <button to="/" className={styles.cardCityButton}>
+        <button to="/" className={styles.cityCardButton}>
           Saber mas
         </button>
       </div>

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getHotels } from "../../redux/actions";
 import FilterOrderHotels from "../FiltersOrders/Hotels/FilterOrderHotels";
+import NavBar from "../NavBar/NavBar";
 import Paged from "../Paged/Paged";
 import HotelContainer from "./HotelContainer/HotelContainer";
 import style from "./Hotels.module.css";
@@ -28,6 +29,8 @@ const Hotels = () => {
 
   return (
     <div>
+      <NavBar />
+
       <FilterOrderHotels />
 
       <HotelContainer hotels={currentHotel} />

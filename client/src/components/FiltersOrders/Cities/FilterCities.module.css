@@ -1,8 +1,8 @@
-.filterOrderHotels {
+.filterCities {
   width: 100%;
 }
 
-.filterOrderHotelsContainer {
+.ffilterCitiesContainer {
   max-width: 60%;
   padding: 20px 0;
   margin: auto;
@@ -11,9 +11,9 @@
   row-gap: 20px;
 }
 
-.filterOrderHotelsTypes {
+.filterCitiesTypes {
   width: 250px;
   align-items: center;
   text-align: center;
-  margin: 20px auto;
+  margin: 20px auto 50px auto;
 }

@@ -25,17 +25,19 @@ const Home = () => {
           {isAuthenticated ? (
             <div>
               <h1>¡Bienvenido!</h1>
-              <Profile />
+              {/* <Profile /> */}
+              <br />
               <p>Encuentra el lugar perfecto para pasar tus vacaciones!</p>
-              <div>
+              {/* <div>
                 <LogoutButton />
-              </div>
+              </div> */}
             </div>
           ) : (
             <div>
               <h1>¡Bienvenido!</h1>
+              <br />
               <p>Encuentra el lugar perfecto para pasar tus vacaciones!</p>
-              <LoginButton />
+              {/* <LoginButton /> */}
             </div>
           )}
           <br />

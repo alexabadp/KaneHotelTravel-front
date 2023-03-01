@@ -1,90 +1,89 @@
-@import url('https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Josefin+Sans&family=Ubuntu&family=Ubuntu+Condensed&family=Ubuntu+Mono:ital,wght@1,400;1,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Josefin+Sans&family=Ubuntu&family=Ubuntu+Condensed&family=Ubuntu+Mono:ital,wght@1,400;1,700&display=swap");
 
-.containerBookingGeneral{
-    display: flex;
-    align-items: center;
-    height: 100vh;
+.containerBookingGeneral {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
 }
-.detailBookingContainer{
-    display: flex;
-    justify-content: space-around;
-    width: 1300px;
-    margin: auto;
-    border: 2px solid black;
-    border-radius: 15px;
-    padding: 20px 15px;
-    background-color: rgb(238, 238, 197);
-    gap: 60px;
-    box-shadow: 10px 10px 10px 0px rgba(0,0,0,0.75);
-    
+.detailBookingContainer {
+  display: flex;
+  justify-content: space-around;
+  width: 1300px;
+  margin: auto;
+  border: 2px solid black;
+  border-radius: 15px;
+  padding: 20px 15px;
+  background-color: rgb(238, 238, 197);
+  gap: 60px;
+  box-shadow: 10px 10px 10px 0px rgba(0, 0, 0, 0.75);
 }
-.hotel{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;
+.hotel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
 }
-.image{
-    text-align: center;
+.image {
+  text-align: center;
 }
-.image img{
-   text-align: center;
-   width: 300px;
-   height: 300px;
+.image img {
+  text-align: center;
+  width: 300px;
+  height: 300px;
 }
-.button{    
-    margin-top: 20px;
-    margin-right: 15px;
+.button {
+  margin-top: 20px;
+  margin-right: 15px;
 }
 
-.titleBooking{
-    font-family: 'Josefin Sans', sans-serif;
-    font-size: 22px;
-    margin-top: 20px;
+.titleBooking {
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 22px;
+  margin-top: 20px;
 }
-.title1{    
-    font-family: 'Josefin Sans', sans-serif;
-    font-size: 30px;     
+.title1 {
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 30px;
 }
-.modal{
-    display: flex;
-    margin-top: 15px;
-    justify-content: left;
-    gap: 1rem;
+.modal {
+  display: flex;
+  margin-top: 15px;
+  justify-content: left;
+  gap: 1rem;
 }
-.btnDelete{
-    background-color: rgb(182, 112, 96);
-    color: aliceblue;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    width: 25px;
-    height: 25px;
-    font-size: 15px;
+.btnDelete {
+  background-color: rgb(182, 112, 96);
+  color: aliceblue;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  width: 25px;
+  height: 25px;
+  font-size: 15px;
 }
-.stripe{
-    border: 2px solid black;
-    margin-top: 20px;
-    background-color: whitesmoke;
+.stripe {
+  border: 2px solid black;
+  margin-top: 20px;
+  background-color: whitesmoke;
 }
-.fail{
-    margin-left: 15px;
-    color: black;
-    animation: move linear 2000ms infinite;
-
+.fail {
+  margin-left: 15px;
+  color: black;
+  animation: move linear 2000ms infinite;
 }
 @keyframes move {
-    0%{
-        color: rgb(21, 84, 86);
-    }
-    25%{
-        color: blueviolet;
-    }
-    50%{
-        color: blue;
-    }
-    75%{
-        color: rgb(127, 44, 44);
-    }
-    100%{
-        color: red;
-    }
+  0% {
+    color: rgb(21, 84, 86);
+  }
+  25% {
+    color: blueviolet;
+  }
+  50% {
+    color: blue;
+  }
+  75% {
+    color: rgb(127, 44, 44);
+  }
+  100% {
+    color: red;
+  }
 }

@@ -6,6 +6,7 @@ import { useLocation, useParams } from "react-router-dom";
 import { getDetailHotel } from "../../../redux/actions";
 import { Link } from "react-router-dom";
 import styles from "./DetailHotel.module.css";
+import NavBar from "../../../components/NavBar/NavBar";
 
 const DetailHotel = () => {
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ const DetailHotel = () => {
 
   return (
     <div className={styles.containerDetailHotel}>
+      <NavBar />
       <div className={styles.containerDivDetail}>
         <h4 className={styles.title}>{detailHotel.name}</h4>
 

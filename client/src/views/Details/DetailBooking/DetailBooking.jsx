@@ -16,6 +16,7 @@ import Row from "react-bootstrap/Row";
 import style from "./DetailBooking.module.css";
 import Modal from "react-bootstrap/Modal";
 import CheckoutForm from "../../../components/CheckoutForm/CheckoutForm";
+import NavBar from "../../../components/NavBar/NavBar";
 
 function validate(data, dateValue) {
   const errors = {};
@@ -96,7 +97,6 @@ const DetailBooking = () => {
     let checkOutDate = dayjs(dateValue[1]).format("DD/MM/YYYY");
     setData({ ...data, checkin: checkInDate, checkout: checkOutDate });
   }, [dateValue]);
-  
 
   //handler Functions
   const handlerInputName = (event) => {
@@ -163,6 +163,7 @@ const DetailBooking = () => {
 
   return (
     <div className={style.containerBookingGeneral}>
+      <NavBar />
       <div className={style.detailBookingContainer}>
         <div>
           <Form>
@@ -255,8 +256,12 @@ const DetailBooking = () => {
                 onChange={(e) => setCheckIn(e)}
                 value={dateValue}
               />
-              {error.checkin && <span className={style.fail}>{error.checkin}</span>}
-              {error.checkout && <span className={style.fail}>{error.checkout}</span>}
+              {error.checkin && (
+                <span className={style.fail}>{error.checkin}</span>
+              )}
+              {error.checkout && (
+                <span className={style.fail}>{error.checkout}</span>
+              )}
             </div>
             <div>
               <div>

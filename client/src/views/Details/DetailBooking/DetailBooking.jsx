@@ -58,10 +58,8 @@ const DetailBooking = () => {
     price: 0,
   });
   0;
-  // const stripePromise = loadStripe(import.meta.env.VITE_KEY_STRIPE)
-  const stripePromise = loadStripe(
-    "pk_test_51MeUSYJo5kAZGuTWTiN6NsA5FRMyqId8smjQOgEObJw8rbCeHijt3N58dI0J5HfF48lROYvHLIzLE2QjAk8skODA00D3KU6iNb"
-  );
+  
+  const stripePromise = loadStripe(import.meta.env.VITE_KEY_STRIPE);
   //Validacion
   const [error, setError] = useState({});
   const [botonActive, setActive] = useState(false);

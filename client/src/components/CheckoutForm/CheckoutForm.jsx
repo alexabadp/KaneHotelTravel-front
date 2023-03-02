@@ -46,11 +46,11 @@ const CheckoutForm = (props) =>{
   }
   
   return (
-    <form onSubmit={handleSubmit} className={style.paymentForm}>
+    <form className={style.paymentForm}>
       {error && <p>{error}</p>}
       {success && <p>{success}</p>}
       <CardElement />
-      <button disabled={!stripe}>
+      <button disabled={!stripe} onClick={handleSubmit}>
         {loading ? "Cargando" : "Reservar"}
       </button>
     </form>

@@ -1,6 +1,7 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Route, Routes } from "react-router-dom";
+import Landing from "./views/Landing/Landing";
 import Home from "./views/Home/Home";
 import axios from "axios";
 import DetailCity from "./views/Details/DetailCity/DetailCity";
@@ -16,6 +17,7 @@ function App() {
   return (
     <div className="App">
       <Routes>
+        <Route exact path="/landing" element={<Landing />} />
         <Route path="/" element={<Home />} />
         <Route path="/:city" element={<DetailCity />} />
         <Route path="/:city/hotel/:hotel" element={<DetailHotel />} />

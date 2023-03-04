@@ -29,8 +29,8 @@ const CheckoutForm = (props) =>{
           description: props.descriptionPayment
         })
   
+        console.log("Respuesta del backend",data);
         if(!data.error){
-          console.log("Pago exitoso",data);
           setSuccess("Pago exitoso");
         }else{
           setError(data.error)

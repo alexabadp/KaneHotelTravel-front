@@ -6,8 +6,7 @@ import style from './CheckoutForm.module.css'
 const CheckoutForm = (props) =>{
   const stripe = useStripe();
   const elements = useElements();
-  const [error, setError] = useState('');
-  const [success, setSuccess] = useState('');
+  const [errorState, setErrorState] = useState('');
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) =>{
@@ -26,31 +25,31 @@ const CheckoutForm = (props) =>{
         const {data}  = await axios.post(`payment/rooms`, {
           id,
           amount: (props.totalPayment * 100),
-          description: props.descriptionPayment
+          description: props.descriptionPayment,
+          formData: props.formData
         })
   
-        console.log("Respuesta del backend",data);
         if(!data.error){
-          setSuccess("Pago exitoso");
+          props.reservationResponse(data);
+          props.successfulReservation(true);
         }else{
-          setError(data.error)
+          setErrorState(data.error)
         }
         elements.getElement(CardElement).clear();
         setLoading(false);
       }else{
-        setError(error);
+        setErrorState(error);
       }
     } catch (err) {
-      setError(err.message);
+      setErrorState(err.message);
     }
   }
   
   return (
     <form className={style.paymentForm}>
-      {error && <p>{error}</p>}
-      {success && <p>{success}</p>}
+      {errorState && <p className={style.errorMessage}>{errorState}</p>}
       <CardElement />
-      <button disabled={!stripe} onClick={handleSubmit}>
+      <button disabled={!stripe} onClick={handleSubmit} className={style.button}>
         {loading ? "Cargando" : "Reservar"}
       </button>
     </form>

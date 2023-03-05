@@ -17,6 +17,7 @@ import style from "./DetailBooking.module.css";
 import Modal from "react-bootstrap/Modal";
 import CheckoutForm from "../../../components/CheckoutForm/CheckoutForm";
 import NavBar from "../../../components/NavBar/NavBar";
+import SuccessfulReservation from "../../../components/SuccessfulReservation/SuccessfulReservation";
 
 function validate(data, dateValue) {
   const errors = {};
@@ -39,6 +40,8 @@ function validate(data, dateValue) {
 }
 
 const DetailBooking = () => {
+  const [successfulReservation, setSuccessfulReservation] = useState(false);
+  const [reservationResponse  , setReservationResponse  ] = useState({});
   const location = useLocation();
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -160,6 +163,8 @@ const DetailBooking = () => {
   };
 
   return (
+    successfulReservation ? <SuccessfulReservation res={reservationResponse}/> 
+    :
     <div className={style.containerBookingGeneral}>
       <NavBar />
       <div className={style.detailBookingContainer}>
@@ -319,6 +324,9 @@ const DetailBooking = () => {
                           <CheckoutForm
                             totalPayment={amountHardCode}
                             descriptionPayment={descriptionHardCode}
+                            formData={data}
+                            successfulReservation={setSuccessfulReservation}
+                            reservationResponse={setReservationResponse}
                           />
                         </Elements>
                       </Form.Group>

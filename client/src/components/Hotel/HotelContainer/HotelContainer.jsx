@@ -17,7 +17,7 @@ const HotelContainer = (props) => {
           hotels.map((c) => {
             return (
               <div key={c.id}>
-                <Link to={`/${city}/hotel/${c.name}`}>
+                <Link to={`/home/${city}/hotel/${c.name}`}>
                   <HotelCard
                     id={c.id}
                     name={c.name}

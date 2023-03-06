@@ -16,12 +16,13 @@ const NavBar = () => {
   return (
     <div className={styles.navBarContainer}>
       <div className={styles.navBarNavigation}>
-        <Link to="/">
+        <Link to="/home">
           <div className={styles.navBarLogo}>
             <img src={logo} alt="logo" />
             <h2>KANE TRAVELS</h2>
           </div>
         </Link>
+        
         <nav className={styles.navBarUser}>
           {/* <div className={styles.navBarElements}>
             <Link to="/">Publicar Hotel</Link>

@@ -64,8 +64,6 @@ const FilterOrderActivities = () => {
     navigateTo(`/${event.value}/activities`);
   };
 
-  console.log(params.city);
-
   useEffect(() => {
     dispatch(getActivities(params.city, category, price));
   }, [category, price, params, city]);

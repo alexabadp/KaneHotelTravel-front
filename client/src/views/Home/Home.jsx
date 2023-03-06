@@ -9,6 +9,8 @@ import { getCities } from "../../redux/actions";
 import style from "./Home.module.css";
 import { useAuth0 } from "@auth0/auth0-react";
 import NavBar from "../../components/NavBar/NavBar";
+import Landing from "../Landing/Landing";
+
 
 const Home = () => {
   const dispatch = useDispatch();

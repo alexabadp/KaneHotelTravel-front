@@ -14,7 +14,7 @@ const CityCard = (props) => {
           <img src={iconHeart} />
           <p>{props.popularity}</p>
         </div>
-        <button to="/" className={styles.cityCardButton}>
+        <button to="/home/" className={styles.cityCardButton}>
           Saber mas
         </button>
       </div>

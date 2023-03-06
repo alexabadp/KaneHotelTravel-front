@@ -1,7 +1,7 @@
 .navBarFooterContainer {
     background-color: #ffffff;
     width: 100%;
-    height: 200px;
+    height: 250px;
 }
 .navBarFooterContainer2 {
     display: flex;
@@ -9,24 +9,25 @@
     align-items: center;
     padding: 50px;
 }
-
 .containerLinks {
-    padding: 25px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
+  background-color: #FF8C00;
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8rem;
+  padding-top:  10px;
+  padding-bottom: 10px;
 }
 .containerLinks .links {
-    font-size: 18px;
-    font-weight: 600;
-    color: #000000;
+  color: #273245;
+  font-size: 20px;
+  text-decoration: underline;
 }
-
 .navBarLogo {
     display: flex;
     align-items: center;
-    /* border: 1px solid red; */
   }
   .navBarLogo h2,
   .navBarLogo h4 {
@@ -36,4 +37,25 @@
   .navBarLogo img {
     width: 80px;
     padding: 2px;
+  }
+  .containerColaboradores {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .containerColaboradores .title {
+    font-size: 20px;
+    font-weight: 600;
+  }
+  .containerColaboradores .links {
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: underline;
+  }
+
+  .copyright {
+    font-size: 16px;
+    text-align: center;
+    font-weight: 600;
   }

@@ -25,13 +25,11 @@ const FilterCities = () => {
   const navigateTo = useNavigate();
   const params = useParams();
 
-  console.log(params.city);
-
   const [city, setCity] = useState("");
 
   const handlerCity = (event) => {
     setCity(event.value);
-    navigateTo(`/${event.value}`);
+    navigateTo(`/home/${event.value}/hotels`);
   };
 
   useEffect(() => {

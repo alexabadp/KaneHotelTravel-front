@@ -1,19 +1,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Josefin+Sans&family=Ubuntu&family=Ubuntu+Condensed&family=Ubuntu+Mono:ital,wght@1,400;1,700&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Montserrat");
 
+body {
+  margin: 0%;
+  padding: 0%;
+  font-family: montserrat, arial, verdana;
+}
 .containerBookingGeneral{
     display: flex;
     align-items: center;
     height: 100vh;
+    flex-direction: column;
+    margin-top: 20px;
+    
 }
 .detailBookingContainer{
-    display: flex;
+    width: 80vw;
     justify-content: space-around;
-    width: 1300px;
-    margin: auto;
     border: 2px solid black;
     border-radius: 15px;
     padding: 20px 15px;
-    background-color: rgb(238, 238, 197);
+    background-color: rgb(199, 199, 193);
     gap: 60px;
     box-shadow: 10px 10px 10px 0px rgba(0,0,0,0.75);
     
@@ -45,10 +52,67 @@
     font-family: 'Josefin Sans', sans-serif;
     font-size: 30px;     
 }
-.modal{
-    display: flex;
-    margin-top: 15px;
-    justify-content: left;
-    gap: 1rem;
-    
+.modal {
+  display: flex;
+  margin-top: 15px;
+  justify-content: left;
+  gap: 1rem;
 }
+.btnDelete {
+  background-color: rgb(182, 112, 96);
+  color: aliceblue;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  width: 25px;
+  height: 25px;
+  font-size: 15px;
+}
+.stripe {
+  border: 2px solid black;
+  margin-top: 20px;
+  background-color: whitesmoke;
+}
+.fail {
+  margin-left: 15px;
+  color: black;
+  animation: move linear 2000ms infinite;
+}
+.buttonCambio{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+}
+@keyframes move {
+    0%{
+        color: rgb(21, 84, 86);
+    }
+    25%{
+        color: blueviolet;
+    }
+    50%{
+        color: blue;
+    }
+    75%{
+        color: rgb(127, 44, 44);
+    }
+    100%{
+        color: red;
+    }
+}
+/* PROGRESS BAR */
+.progressbar {
+  width: 80vw;
+  min-height: 20px;
+  border: 1px solid black;
+  border-radius: 50px;
+  background-color: white;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.progressbar div {
+  width: 33.3%;
+  height: 100%;
+  background-color: rgb(98, 0, 255);
+}
+

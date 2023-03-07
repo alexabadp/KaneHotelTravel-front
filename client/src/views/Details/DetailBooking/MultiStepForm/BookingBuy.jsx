@@ -19,6 +19,8 @@ const BookingBuy = ({
   amountHardCode,
   descriptionHardCode,
   handlerSummit,
+  setSuccessfulReservation,
+  setReservationResponse
 }) => {
   return (
     <div>
@@ -63,15 +65,18 @@ const BookingBuy = ({
                   </p>
                 </ul>
                 <div className={style.stripe}>
-                  <Form.Group className="mb-3" controlId="formGridEmail">
-                    <Elements stripe={stripePromise}>
-                      <CheckoutForm
-                        totalPayment={amountHardCode}
-                        descriptionPayment={descriptionHardCode}
-                      />
-                    </Elements>
-                  </Form.Group>
-                </div>
+                      <Form.Group className="mb-3" controlId="formGridEmail">
+                        <Elements stripe={stripePromise}>
+                          <CheckoutForm
+                            totalPayment={amountHardCode}
+                            descriptionPayment={descriptionHardCode}
+                            formData={data}
+                            successfulReservation={setSuccessfulReservation}
+                            reservationResponse={setReservationResponse}
+                          />
+                        </Elements>
+                      </Form.Group>
+                    </div>
               </Modal.Body>
               <Modal.Footer>
                 <Button type="submit" variant="secondary" onClick={handlerSummit}>

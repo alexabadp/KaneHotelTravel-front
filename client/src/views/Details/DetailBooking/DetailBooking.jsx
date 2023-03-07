@@ -6,13 +6,11 @@ import { loadStripe } from "@stripe/stripe-js";
 import axios from "axios"
 import dayjs from "dayjs";
 import React from "react";
-import QRCode from "react-qr-code";
 import Button from "react-bootstrap/Button";
 import style from "./DetailBooking.module.css";
 import UserData from "./MultiStepForm/UserData";
 import RoomSelect from "./MultiStepForm/RoomSelect";
 import BookingBuy from "./MultiStepForm/BookingBuy";
-import NavBar from "../../../components/NavBar/NavBar";
 import NavBar from "../../../components/NavBar/NavBar";
 import SuccessfulReservation from "../../../components/SuccessfulReservation/SuccessfulReservation";
 
@@ -37,11 +35,10 @@ function validate(data, dateValue) {
 }
 
 const DetailBooking = () => {
-  const [successfulReservation, setSuccessfulReservation] = useState(false);
-  const [reservationResponse  , setReservationResponse  ] = useState({});
   const location = useLocation();
   const navigate = useNavigate();
-
+  const [successfulReservation, setSuccessfulReservation] = useState(false);
+  const [reservationResponse  , setReservationResponse  ] = useState({});
   const [data, setData] = useState({
     hotel: location.state.name,
     name: "",
@@ -56,12 +53,18 @@ const DetailBooking = () => {
     image: [],
     datosRoom: location.state.rooms,
   });
-  0;
-  // const stripePromise = loadStripe(import.meta.env.VITE_KEY_STRIPE)
+  
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const amountHardCode = data.price; //10usd
+  const descriptionHardCode = "Descripcion del pago"; //10usd
+  const [dateValue, setCheckIn] = useState(new Date());
+
+  // const stripePromise = loadStripe(import.meta.env.VITE_KEY_STRIPE);
   const stripePromise = loadStripe(
     "pk_test_51MeUSYJo5kAZGuTWTiN6NsA5FRMyqId8smjQOgEObJw8rbCeHijt3N58dI0J5HfF48lROYvHLIzLE2QjAk8skODA00D3KU6iNb"
   );
-  //Validacion
   const [error, setError] = useState({});
   const [botonActive, setActive] = useState(true);
 
@@ -201,6 +204,8 @@ const DetailBooking = () => {
     } else {
       return (
         <BookingBuy
+          setReservationResponse={setReservationResponse}
+          setSuccessfulReservation={setSuccessfulReservation}
           error={error}
           stripePromise={stripePromise}
           handleClose={handleClose}
@@ -235,183 +240,28 @@ const DetailBooking = () => {
     successfulReservation ? <SuccessfulReservation res={reservationResponse}/> 
     :
     <div className={style.containerBookingGeneral}>
+      <NavBar />
+      <div className={style.progressbar}>
+        <div
+          style={{ width: page == 0 ? "33.3%" : page == 1 ? "66.6%" : "100%" }}
+        ></div>
+      </div>
+      <form onSubmit={handlerSummit}>
       <div className={style.detailBookingContainer}>
         <div className={style.titleBooking}>
           <h2>{FormTitle[page]}</h2>
         </div>
         <div>
-          <Form>
-            <Row className="mb-3">
-              <Form.Group as={Col}>
-                <Form.Label className={style.titleBooking}>
-                  First Name
-                </Form.Label>
-                <Form.Control
-                  onChange={(e) => handlerInputName(e)}
-                  name="name"
-                  type="text"
-                  placeholder="Your Name"
-                />
-              </Form.Group>
-              {error.name && <span className={style.fail}>{error.name}</span>}
-
-              <Form.Group as={Col}>
-                <Form.Label className={style.titleBooking}>
-                  Last Name
-                </Form.Label>
-                <Form.Control
-                  onChange={(e) => handlerInputLastname(e)}
-                  name="lastname"
-                  type="text"
-                  placeholder="Your Last Name"
-                />
-                {error.lastname && (
-                  <span className={style.fail}>{error.lastname}</span>
-                )}
-              </Form.Group>
-            </Row>
-
-            <Form.Group className="mb-3" controlId="formGridEmail">
-              <Form.Label className={style.titleBooking}>Your Email</Form.Label>
-              <Form.Control
-                onChange={(e) => handlerInputEmail(e)}
-                name="email"
-                placeholder="user@email"
-              />
-              {error.email && <span className={style.fail}>{error.email}</span>}
-              {error.typeEmail && (
-                <span className={style.fail}>{error.typeEmail}</span>
-              )}
-            </Form.Group>
-
-            <Row className="mb-3">
-              <Form.Group as={Col}>
-                <Form.Label className={style.titleBooking}>Phone</Form.Label>
-                <Form.Control
-                  placeholder="Input Only Numbers Max: 10"
-                  onChange={(e) => handlerInputCity(e)}
-                  name="phone"
-                />
-                {error.phone && (
-                  <span className={style.fail}>{error.phone}</span>
-                )}
-                {error.typePhone && (
-                  <span className={style.fail}>{error.typePhone}</span>
-                )}
-              </Form.Group>
-
-              <Form.Group as={Col}>
-                <Form.Label className={style.titleBooking}>ID</Form.Label>
-                <Form.Control onChange={(e) => handlerInputId(e)} name="id" />
-                {error.id && <span className={style.fail}>{error.id}</span>}
-                {error.idType && (
-                  <span className={style.fail}>{error.idType}</span>
-                )}
-              </Form.Group>
-            </Row>
-
-            <Form.Group as={Col} controlId="formGridState">
-              <Form.Label className={style.titleBooking}>Rooms</Form.Label>
-              <Select
-                options={datosRoom}
-                placeholder="Choice Room"
-                onChange={handlerOption}
-              />
-              {error.rooms && <span className={style.fail}>{error.rooms}</span>}
-            </Form.Group>
-
-            <Form.Label className={style.titleBooking}>
-              Check-In / Check-Out
-            </Form.Label>
-            <div>
-              <Calendar
-                minDate={new Date()}
-                selectRange={true}
-                onChange={(e) => setCheckIn(e)}
-                value={dateValue}
-              />
-              {error.checkin && <span className={style.fail}>{error.checkin}</span>}
-              {error.checkout && <span className={style.fail}>{error.checkout}</span>}
-            </div>
-            <div>
-              <div>
-                {dateValue[0] && dateValue[1] > 1 && (
-                  <>
-                    <Form.Label className={style.titleBooking}>
-                      <p>Check In: {formatDate(dateValue[0])}</p>
-                      <p>Check Out: {formatDate(dateValue[1])}</p>
-                    </Form.Label>
-                  </>
-                )}
-              </div>
-            </div>
-            <div className={style.modal}>
-              <>
-                <Link to={`/`}>
-                  <Button className={style.button} variant="primary">
-                    Cancel
-                  </Button>
-                </Link>
-                <Button
-                  id="btn-Summit"
-                  disabled={!botonActive}
-                  variant="primary"
-                  onClick={handleShow}
-                  className={style.button}
-                >
-                  Finalize Reservation
-                </Button>
-                <Modal show={show} onHide={handleClose}>
-                  <Modal.Header closeButton>
-                    <Modal.Title>Booking Summary</Modal.Title>
-                  </Modal.Header>
-                  <Modal.Body>
-                    <ul className={style.titleBooking}>
-                      <p className={style.titleBooking}>
-                        Hotel: {location.state.name}
-                      </p>
-                      <p className={style.titleBooking}>Name: {data.name}</p>
-                      <p className={style.titleBooking}>
-                        Last Name: {data.lastname}
-                      </p>
-                      <p className={style.titleBooking}>ID: {data.id}</p>
-                      <p className={style.titleBooking}>
-                        Rooms:{" "}
-                        {data.rooms?.map((e) => {
-                          return <p key={e}>{e}</p>;
-                        })}
-                      </p>
-                      <p className={style.titleBooking}>
-                        Total Price: ${data.price}
-                      </p>
-                    </ul>
-                    <div className={style.stripe}>
-                      <Form.Group className="mb-3" controlId="formGridEmail">
-                        <Elements stripe={stripePromise}>
-                          <CheckoutForm
-                            totalPayment={amountHardCode}
-                            descriptionPayment={descriptionHardCode}
-                          />
-                        </Elements>
-                      </Form.Group>
-                    </div>
-                  </Modal.Body>
-                  <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                      Close
-                    </Button>
-                  </Modal.Footer>
-                </Modal>
-              </>
-            </div>
-            {/* <Button className={style.button} variant="primary" type="submit">
-              Submit
-            </Button> */}
-          </Form>
-        </div>
-        <div className={style.hotel}>
-          <div className={style.image}>
-            <h2 className={style.title1}>{location.state.name}</h2>
+          {PageDisplay()}
+          <Button
+            className={style.button}
+            disabled={page == 0}
+            onClick={() => {
+              setPage((currentPage) => currentPage - 1);
+            }}
+          >
+            Anterior
+          </Button>
 
           <Button
             className={style.button}

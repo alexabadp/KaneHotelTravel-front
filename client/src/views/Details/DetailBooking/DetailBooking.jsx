@@ -15,8 +15,32 @@ import Modal from "react-bootstrap/Modal";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "../../../components/CheckoutForm/CheckoutForm";
+import NavBar from "../../../components/NavBar/NavBar";
+import SuccessfulReservation from "../../../components/SuccessfulReservation/SuccessfulReservation";
+
+function validate(data, dateValue) {
+  const errors = {};
+  if (!data.name) errors.name = "The Name is required";
+  if (!data.lastname) errors.lastname = "The Last Name id required";
+  if (!data.email) errors.email = "The E-mail is required";
+  const regex =
+    /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+  if (!data.email || regex.test(data.email) === false)
+    errors.typeEmail = " / The type E-mail is invalid";
+  if (!data.phone) errors.phone = "The Phone is required";
+  if (data.phone.length > 10 || isNaN(data.phone))
+    errors.typePhone = "The type Phone is invalid";
+  if (!data.id) errors.id = "Id is required";
+  if (isNaN(data.id) || data.id.length > 8)
+    errors.idType = "Id type is invalid";
+  if (!data.rooms.length) errors.rooms = "Pleace select Room";
+  if (!dateValue[0]) errors.checkin = "Date Check-In is required";
+  return errors;
+}
 
 const DetailBooking = () => {
+  const [successfulReservation, setSuccessfulReservation] = useState(false);
+  const [reservationResponse  , setReservationResponse  ] = useState({});
   const location = useLocation();
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -98,6 +122,8 @@ const DetailBooking = () => {
   console.log(data.rooms, "rooms");
 
   return (
+    successfulReservation ? <SuccessfulReservation res={reservationResponse}/> 
+    :
     <div className={style.containerBookingGeneral}>
       <div className={style.detailBookingContainer}>
         <div>
@@ -233,6 +259,19 @@ const DetailBooking = () => {
                         Total Price: {data.price}
                       </p>
                     </ul>
+                    <div className={style.stripe}>
+                      <Form.Group className="mb-3" controlId="formGridEmail">
+                        <Elements stripe={stripePromise}>
+                          <CheckoutForm
+                            totalPayment={amountHardCode}
+                            descriptionPayment={descriptionHardCode}
+                            formData={data}
+                            successfulReservation={setSuccessfulReservation}
+                            reservationResponse={setReservationResponse}
+                          />
+                        </Elements>
+                      </Form.Group>
+                    </div>
                   </Modal.Body>
                   <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>

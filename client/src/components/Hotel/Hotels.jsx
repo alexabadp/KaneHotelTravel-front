@@ -6,8 +6,10 @@ import FilterOrderHotels from "../FiltersOrders/Hotels/FilterOrderHotels";
 import Paged from "../Paged/Paged";
 import HotelContainer from "./HotelContainer/HotelContainer";
 import style from "./Hotels.module.css";
+import {useNavigate} from "react-router-dom"
 
 const Hotels = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const params = useParams();
   const hotels = useSelector((state) => state.hotels);
@@ -38,6 +40,14 @@ const Hotels = () => {
           paginado={paged}
           currentPage={currentPage}
         />
+      </div>
+      <div className={style.containerButtonVolver}>
+        <button 
+              className={style.buttonMoreHotels} 
+              onClick={()=>navigate(-1)}
+            >
+                Volver
+        </button>
       </div>
     </div>
   );

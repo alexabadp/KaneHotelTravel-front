@@ -41,6 +41,11 @@ const FilterOrderActivities = () => {
     setPrice(event.value);
   };
 
+  const handlerCity = (event) => {
+    setCity(event.value);
+    navigateTo(`/${event.value}/activities`);
+  };
+
   useEffect(() => {
     dispatch(getActivities(params.city, category, price));
   }, [category, price]);

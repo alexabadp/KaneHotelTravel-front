@@ -6,8 +6,10 @@ import FilterOrderActivities from "../FiltersOrders/Activities/FilterOrderActivi
 import Paged from "../Paged/Paged";
 import ActivityContainer from "./ActivityContainer/ActivityContainer";
 import style from "./Activities.module.css";
+import NavBar from "../NavBar/NavBar";
 
 const Activities = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const params = useParams();
   const activities = useSelector((state) => state.activities);
@@ -42,6 +44,14 @@ const Activities = () => {
           paginado={paged}
           currentPage={currentPage}
         />
+      </div>
+      <div className={style.containerButtonVolver}>
+        <button 
+              className={style.buttonMoreActivities} 
+              onClick={()=>navigate(-1)}
+            >
+                Volver
+        </button>
       </div>
     </div>
   );

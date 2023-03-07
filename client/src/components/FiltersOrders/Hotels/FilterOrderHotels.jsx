@@ -40,6 +40,11 @@ const FilterOrderHotels = () => {
     setRating(event.value);
   };
 
+  const handlerCity = (event) => {
+    setCity(event.value);
+    navigateTo(`/home/${event.value}/hotels`);
+  };
+
   useEffect(() => {
     dispatch(getHotels(params.city, category, rating));
   }, [category, rating]);

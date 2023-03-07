@@ -62,7 +62,6 @@ const CreateHotel = () => {
   const navigate = useNavigate();
 
   // const handlerSubmit = () => {
-  //   console.log("Se disparo la accion para obtener el detalle del Hotel");
   //   navigate(`/${record.response?.city}/hotel/${record.response?.name}`);
   // };
 

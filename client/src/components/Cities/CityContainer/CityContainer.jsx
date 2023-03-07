@@ -6,7 +6,6 @@ import styles from "./CityContainer.module.css";
 const CityContainer = () => {
   const cities = useSelector((state) => state.cities);
 
-  console.log(cities);
 
   return (
     <div className={styles.cityContainer}>
@@ -15,7 +14,7 @@ const CityContainer = () => {
         {cities.length ? (
           cities.map((e) => {
             return (
-              <Link key={e.id} to={`/${e.name}`}>
+              <Link key={e.id} to={`/home/${e.name}`}>
                 <CityCard
                   id={e.id}
                   image={e.image}

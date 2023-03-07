@@ -26,12 +26,12 @@ const DetailCity = () => {
       <FilterCities />
       <HotelContainer hotels={detailCity.hotels} />
       <div className={style.detailCityMore}>
-        <Link to={`/${city}/hotels`}>MORE HOTELS {"-->"} </Link>
+        <Link to={`/home/${city}/hotels`}>MORE HOTELS {"-->"} </Link>
       </div>
 
       <ActivityContainer activities={detailCity.activities} />
       <div className={style.detailCityMore}>
-        <Link to={`/${city}/activities`}>MAS ACTIVIDADES {"-->"}</Link>
+        <Link to={`/home/${city}/activities`}>MAS ACTIVIDADES {"-->"}</Link>
       </div>
     </div>
   );

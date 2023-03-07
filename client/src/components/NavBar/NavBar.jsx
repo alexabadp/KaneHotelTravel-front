@@ -16,26 +16,32 @@ const NavBar = () => {
   return (
     <div className={styles.navBarContainer}>
       <div className={styles.navBarNavigation}>
-        <div className={styles.navBarLogo}>
-          <img src={logo} alt="logo" />
-          <h2>KANE TRAVELS</h2>
-        </div>
+        <Link to="/home">
+          <div className={styles.navBarLogo}>
+            <img src={logo} alt="logo" />
+            <h2>KANE TRAVELS</h2>
+          </div>
+        </Link>
+        
         <nav className={styles.navBarUser}>
-          <div className={styles.navBarElements}>
+          {/* <div className={styles.navBarElements}>
             <Link to="/">Publicar Hotel</Link>
           </div>
           <div className={styles.navBarElements}>
             <Link to="/">Publicar Actividad</Link>
-          </div>
-          <div className={styles.navBarLogin}>
+          </div> */}
+          <div>
             {isAuthenticated ? (
-              <div>
-                <div>
+              <div className={styles.navBarLogin}>
+                <div className={styles.navBarLoginElements}>
+                  <Profile />
+                </div>
+                <div className={styles.navBarLoginElements}>
                   <LogoutButton />
                 </div>
               </div>
             ) : (
-              <div>
+              <div className={styles.navBarLogin}>
                 <LoginButton />
               </div>
             )}

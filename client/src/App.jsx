@@ -28,6 +28,8 @@ function App() {
         <Route path="/home/:city/activity/:activity" element={<DetailActivity />} /> 
         <Route path="/detail/booking" element={<DetailBooking />} /> 
         <Route path="/backoffice/hotel/create" element={<CreateHotel />} />
+        <Route path="/login" element={<Login />} />
+
       </Routes>
     </div>
   );

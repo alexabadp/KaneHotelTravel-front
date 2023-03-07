@@ -32,8 +32,8 @@ const NavBarFooter = () => {
                 </div>
 
                 <div className={styles.copyright}>
-                    Copyright © 2023 - WebFt-33a <br />
-                    Grupo 13 Henry.
+                    <span className={styles.texto}>Copyright © 2023 - WebFt-33a</span> <br />
+                   <span className={styles.texto}> Grupo 13 Henry.</span>
                 </div>
             </div>
         </nav>

@@ -1,43 +1,35 @@
 @import url('https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Josefin+Sans&family=Ubuntu&family=Ubuntu+Condensed&family=Ubuntu+Mono:ital,wght@1,400;1,700&display=swap');
-@import url("https://fonts.googleapis.com/css?family=Montserrat");
 
-body {
-  margin: 0%;
-  padding: 0%;
-  font-family: montserrat, arial, verdana;
+.genelaContainer{
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    align-items: flex-start;
 }
 .containerBookingGeneral{
     display: flex;
     align-items: center;
     height: 100vh;
-    flex-direction: column;
-    margin-top: 20px;
-    
 }
-.detailBookingContainer{
-    width: 80vw;
-    justify-content: space-around;
+.detailBookingContainer{   
+    width: 800px;
     border: 2px solid black;
     border-radius: 15px;
     padding: 20px 15px;
-    background-color: rgb(199, 199, 193);
+    background-color: rgb(238, 238, 197);
     gap: 60px;
     box-shadow: 10px 10px 10px 0px rgba(0,0,0,0.75);
     
 }
-.hotel{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;
-}
 .image{
     text-align: center;
+    
 }
 .image img{
    text-align: center;
    width: 300px;
    height: 300px;
+   margin: auto;
 }
 .button{    
     margin-top: 20px;
@@ -47,11 +39,16 @@ body {
 .titleBooking{
     font-family: 'Josefin Sans', sans-serif;
     font-size: 22px;
-    margin-top: 20px;
+    margin-top: 10px;
+    
 }
 .title1{    
+    display: flex;
     font-family: 'Josefin Sans', sans-serif;
-    font-size: 30px;     
+    font-size: 30px;
+    flex-direction: row;
+    gap: 1rem; 
+    justify-content: center;    
 }
 .modal{
     display: flex;
@@ -63,26 +60,39 @@ body {
     background-color: rgb(182, 112, 96);
     color: aliceblue;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    width: 25px;
-    height: 25px;
-    font-size: 15px;
+    width: 20px;
+    height: 20px;
+    font-size: 10px;
 }
 .stripe{
     border: 2px solid black;
     margin-top: 20px;
     background-color: whitesmoke;
 }
+.detalle{
+    background-color: rgb(46, 45, 83);
+    color: aliceblue;
+    height: 50%;
+    width: 50%;
+}
+.detalleImage{
+    max-width: 30rem;
+    max-height: 18rem;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 70px;
+}
 .fail{
     margin-left: 15px;
     color: black;
     animation: move linear 2000ms infinite;
-
 }
-.buttonCambio{
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-
+.roomDetail{
+    align-items: center;
+}
+.calendarContainer{
+    
+    
 }
 @keyframes move {
     0%{
@@ -101,20 +111,3 @@ body {
         color: red;
     }
 }
-/* PROGRESS BAR */
-.progressbar {
-  width: 80vw;
-  min-height: 20px;
-  border: 1px solid black;
-  border-radius: 50px;
-  background-color: white;
-  margin-top: 30px;
-  margin-bottom: 30px;
-}
-
-.progressbar div {
-  width: 33.3%;
-  height: 100%;
-  background-color: rgb(98, 0, 255);
-}
-

@@ -14,7 +14,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Route, Routes } from "react-router-dom";
 const server = loadStripe(import.meta.env.SERVER);
 axios.defaults.baseURL = server;
-// axios.defaults.baseURL = "http://localhost:3001"
+axios.defaults.baseURL = "http://localhost:3001"
 function App() {
   return (
     <div className="App">
@@ -28,7 +28,7 @@ function App() {
         <Route path="/home/:city/activity/:activity" element={<DetailActivity />} /> 
         <Route path="/detail/booking" element={<DetailBooking />} /> 
         <Route path="/backoffice/hotel/create" element={<CreateHotel />} />
-        <Route path="/login" element={<Login />} />
+        {/* <Route path="/login" element={<Login />} /> */}
 
       </Routes>
     </div>

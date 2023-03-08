@@ -15,7 +15,7 @@ const DetailHotel = () => {
   const params = useParams();
   const location = useLocation()
   const detailHotel = useSelector((state) => state.detailHotel);
-
+  console.log(detailHotel)
   useEffect(() => {
     dispatch(getDetailHotel(params.hotel));
   }, []);
@@ -54,6 +54,7 @@ const DetailHotel = () => {
                 name: detailHotel.name,
                 image: detailHotel.image,
                 rooms: detailHotel.rooms,
+                description: detailHotel.description
               }}
             >
               <Button

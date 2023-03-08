@@ -48,7 +48,7 @@ const CheckoutForm = (props) =>{
   return (
     <form className={style.paymentForm}>
       {errorState && <p className={style.errorMessage}>{errorState}</p>}
-      <CardElement />
+      <CardElement/>
       <button disabled={!stripe} onClick={handleSubmit} className={style.button}>
         {loading ? "Cargando" : "Reservar"}
       </button>

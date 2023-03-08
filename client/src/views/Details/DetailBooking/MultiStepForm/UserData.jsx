@@ -4,7 +4,7 @@ import React from "react";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
-import style from "./Detail.module.css";
+import style from "./DetailUser.module.css";
 
 const UserData = ({
   data,
@@ -17,8 +17,8 @@ const UserData = ({
 }) => {
   return (
     <div>
-      <div>
-        <div>
+      <div className={style.detailContainer}>
+        <div >
           <Form>
             <Row class="w-50">
               <Form.Group as={Col}>

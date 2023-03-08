@@ -1,9 +1,8 @@
 import "react-datepicker/dist/react-datepicker.css";
 import "react-calendar/dist/Calendar.css";
 import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
-import axios from "axios"
 import dayjs from "dayjs";
 import React from "react";
 import Button from "react-bootstrap/Button";
@@ -36,9 +35,8 @@ function validate(data, dateValue) {
 
 const DetailBooking = () => {
   const location = useLocation();
-  const navigate = useNavigate();
   const [successfulReservation, setSuccessfulReservation] = useState(false);
-  const [reservationResponse  , setReservationResponse  ] = useState({});
+  const [reservationResponse, setReservationResponse] = useState({});
   const [data, setData] = useState({
     hotel: location.state.name,
     name: "",
@@ -54,7 +52,7 @@ const DetailBooking = () => {
     image: [],
     datosRoom: location.state.rooms,
   });
-  
+
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -72,7 +70,7 @@ const DetailBooking = () => {
   useEffect(() => {
     const validations = validate(data, dateValue);
     setError(validations);
-    setActive(true)
+    setActive(true);
   }, [data]);
 
   //formato de fecha
@@ -123,50 +121,54 @@ const DetailBooking = () => {
     if(find.length > 0){
       setData({...data})
     } else {
-      setData({ ...data, rooms: [...data.rooms, roomName]});
+      setData({ ...data, rooms: [...data.rooms, roomName] });
     }
     const arrayRoom = datosRoom?.filter(e => e.name.includes(data.rooms))
     console.log(arrayRoom, "arrayRoom")
   };
-  
+
   //guardar precio en el estado //imagen en el estado
   useEffect(() => {
-    let room = data.rooms
-    let datos = data.datosRoom
-    let total = 0
-    let newArray = []
-    const price = room?.forEach(element => {
-      return datos?.find(e => {
-        if(element === e.name){
-          total = total + e.price          
+    let room = data.rooms;
+    let datos = data.datosRoom;
+    let total = 0;
+    let newArray = [];
+    const price = room?.forEach((element) => {
+      return datos?.find((e) => {
+        if (element === e.name) {
+          total = total + e.price;
         }
-      })           
-    })
-    
-    const imagenRoom = room?.forEach(element => {
-      return datos?.find(e => {
-        if(element === e.name){
-          const obj = newArray.find(f => f.name === e.name)
-          if(obj){
-            console.log("el elemento ya existe")
-          }else{
-            newArray.push({name: e.name, image: e.image, description: e.description})
+      });
+    });
+
+    const imagenRoom = room?.forEach((element) => {
+      return datos?.find((e) => {
+        if (element === e.name) {
+          const obj = newArray.find((f) => f.name === e.name);
+          if (obj) {
+            console.log("el elemento ya existe");
+          } else {
+            newArray.push({
+              name: e.name,
+              image: e.image,
+              description: e.description,
+            });
           }
         }
-      })      
-    })
-    setData({...data, price: total, image: newArray})
-    }, [data.rooms])   
-  
-  //Eliminar  
+      });
+    });
+    setData({ ...data, price: total, image: newArray });
+  }, [data.rooms]);
+
+  //Eliminar
   const handleDelete = (event) => {
     setData({
       ...data,
       rooms: data.rooms.slice().filter((e) => e !== event),
-      image: data.image.slice().filter((e) => e.name !== event)
+      image: data.image.slice().filter((e) => e.name !== event),
     });
   };
- 
+
   //MultiStepForms
   const [page, setPage] = useState(0);
   const FormTitle = [
@@ -178,6 +180,7 @@ const DetailBooking = () => {
     if (page === 0) {
       return (
         <UserData
+          page={page}
           data={data}
           error={error}
           handlerInputName={handlerInputName}
@@ -219,45 +222,59 @@ const DetailBooking = () => {
           setShow={setShow}
           location={location}
           data={data}
-          handlerSummit={handlerSummit}
         />
       );
     }
   };
   useEffect(() => {
-    setActive(true)
-  }, [page]);
-
-  const handlerSummit = async (event) => {
-    event.preventDefault();
-    if(Object.values(error).length > 0){
-      alert("Por Favor complete los campos requeridos");
+    if (
+      !error.name &&
+      !error.lastname &&
+      !error.email &&
+      !error.typeEmail &&
+      !error.phone &&
+      !error.typePhone &&
+      !error.id &&
+      !error.idType
+    ) {
+      setActive(true);
     } else {
-      const info = await axios.post("http://localhost:3001/sendmail", data);
-      navigate("/")
-      alert(`Reserva creada con exito con Id ${info.data}`)
+      setActive(false);
     }
-  }
+  }, [error]);
 
-  return (
-    successfulReservation ? <SuccessfulReservation res={reservationResponse}/> 
-    :
+  console.log(data.hotel);
+  return successfulReservation ? (
+    <SuccessfulReservation res={reservationResponse} hotel={data.hotel} />
+  ) : (
     <div className={style.containerBookingGeneral}>
       <NavBar />
+      <div className={style.banner}>
+        <div className={style.image}>
+          <img src={location.state.image} alt="Imagen" />
+          <div class=" align-items-end">
+            <h2 className={style.detalleTitulo}>
+              Hotel: {location.state.name}
+            </h2>
+            <p>{location.state.description}</p>
+          </div>
+        </div>
+      </div>
       <div className={style.progressbar}>
         <div
           style={{ width: page == 0 ? "33.3%" : page == 1 ? "66.6%" : "100%" }}
         ></div>
+        
       </div>
-      <form onSubmit={handlerSummit}>
-      <div className={style.detailBookingContainer}>
-        <div className={style.titleBooking}>
-          <h2>{FormTitle[page]}</h2>
-        </div>
-        <div>
-          {PageDisplay()}
-          <Button
-            className={style.button}
+      <div>
+        <form>
+          <div className={style.item}>
+            <div>
+            <h2>{FormTitle[page]}</h2>
+            </div>
+            <div className={style.containerButtom}>
+            <Button
+            className={style.buttonDetail}
             disabled={page == 0}
             onClick={() => {
               setPage((currentPage) => currentPage - 1);
@@ -265,20 +282,27 @@ const DetailBooking = () => {
           >
             Anterior
           </Button>
-
-          <Button
-            className={style.button}
+            {page > 1 ? <Button
+              id="btn-Summit"
+              variant="primary"
+              onClick={handleShow}
+              className={style.buttonDetail}
+            >
+              Finalice la Reserva
+            </Button> : <Button
+            className={style.buttonDetail}
             disabled={!botonActive}
             onClick={() => {
               setPage((currentPage) => currentPage + 1);
             }}
           >
             Siguiente
-          </Button>
-        </div>
-        <div className="footer"></div>
+          </Button>}
+          </div>
+          </div>
+          {PageDisplay()}
+        </form>
       </div>
-      </form>
     </div>
   );
 };

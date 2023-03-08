@@ -2,7 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import ActivityCard from "../ActivityCard/ActivityCard";
 import style from "./ActivityContainer.module.css";
 
-const ActivityContainer = (props) => {
+const ActivityContainer = (props, cityHotel) => {
   const params = useParams();
 
   const city = params.city;

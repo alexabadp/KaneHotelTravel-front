@@ -12,10 +12,10 @@ export const Profile = () => {
     isAuthenticated && (
       <div>
         <div>
-        <img src={user.picture} alt={user.name} width="48px" />
+        <img src={user.picture} alt={user.name} width="32px" border-radius="50%" />
         </div>
         <div>
-        <h2>{user.name.split(" ")[0]}</h2>
+        <h4>{user.name.split(" ")[0]}</h4>
         </div>
         {/* <p>{user.email}</p> */}
       </div>

@@ -5,7 +5,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import React from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import style from "./Detail.module.css";
+import style from "./DetailBuy.module.css";
 import Modal from "react-bootstrap/Modal";
 import CheckoutForm from "../../../../components/CheckoutForm/CheckoutForm";
 
@@ -15,36 +15,21 @@ const BookingBuy = ({
   show,
   stripePromise,
   handleClose,
-  handleShow,
   amountHardCode,
   descriptionHardCode,
-  handlerSummit,
   setSuccessfulReservation,
-  setReservationResponse
+  setReservationResponse,
 }) => {
   return (
-    <div>
+    <div className={style.detailBookingContainer}>
       <div>
         <div>
           <Form>
-            <Link to={`/`}>
-              <Button className={style.button} variant="primary">
-                Cancelar
-              </Button>
-            </Link>
-            <Button
-              id="btn-Summit"
-              variant="primary"
-              onClick={handleShow}
-              className={style.button}
-            >
-              Finalice la Reserva
-            </Button>
-            <Modal show={show} onHide={handleClose}>
+            <Modal show={show} onHide={handleClose} className={style.modal}>
               <Modal.Header closeButton>
-                <Modal.Title>Booking Summary</Modal.Title>
+                <Modal.Title>Detalle de la Reserva</Modal.Title>
               </Modal.Header>
-              <Modal.Body>
+              <Modal.Body className={style.body}>
                 <ul className={style.titleBooking}>
                   <p className={style.titleBooking}>
                     Hotel: {location.state.name}
@@ -65,23 +50,25 @@ const BookingBuy = ({
                   </p>
                 </ul>
                 <div className={style.stripe}>
-                      <Form.Group className="mb-3" controlId="formGridEmail">
-                        <Elements stripe={stripePromise}>
-                          <CheckoutForm
-                            totalPayment={amountHardCode}
-                            descriptionPayment={descriptionHardCode}
-                            formData={data}
-                            successfulReservation={setSuccessfulReservation}
-                            reservationResponse={setReservationResponse}
-                          />
-                        </Elements>
-                      </Form.Group>
-                    </div>
+                  <Form.Group className="mb-3" controlId="formGridEmail">
+                    <Elements stripe={stripePromise}>
+                      <CheckoutForm
+                        totalPayment={amountHardCode}
+                        descriptionPayment={descriptionHardCode}
+                        formData={data}
+                        successfulReservation={setSuccessfulReservation}
+                        reservationResponse={setReservationResponse}
+                      />
+                    </Elements>
+                  </Form.Group>
+                </div>
               </Modal.Body>
-              <Modal.Footer>
-                <Button type="submit" variant="secondary" onClick={handlerSummit}>
-                  Reservar
-                </Button>
+              <Modal.Footer className={style.footer}>
+                <Link to={`/`}>
+                  <Button className={style.button} variant="primary">
+                    Cancelar
+                  </Button>
+                </Link>
                 <Button variant="secondary" onClick={handleClose}>
                   Cerrar
                 </Button>

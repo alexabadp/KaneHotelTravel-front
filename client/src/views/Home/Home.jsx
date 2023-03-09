@@ -14,9 +14,10 @@ import Landing from "../Landing/Landing";
 const Home = () => {
   const dispatch = useDispatch();
   const { isAuthenticated } = useAuth0();
+
   useEffect(() => {
     dispatch(getCities());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className={style.homeContainer}>

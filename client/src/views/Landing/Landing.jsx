@@ -69,7 +69,7 @@ const Landing = () => {
                                             <div className={styles.containerDescription}>
                                                <div className={styles.description}>
                                                 <h4>Luna Líquida Hotel Boutique</h4>
-                                                    <p>
+                                                    <p className={styles.parrafoHotel}>
                                                         Luna Líquida se encuentra a sólo unos pasos de las mejores playas de México, del tradicional Malecón, la zona turística y otras atracciones de renombre en Puerto Vallarta y la Riviera Nayarit. Arte, música, gastronomía, romance...
                                                     </p>
                                                </div>
@@ -84,7 +84,7 @@ const Landing = () => {
                                             <div className={styles.containerDescription}>
                                                 <div className={styles.description}>
                                                     <h4>The Hacienda Krystal Vallarta</h4>
-                                                    <p>
+                                                    <p className={styles.parrafoHotel}>
                                                         
                                                         Krystal Vallarta Hotel & Resort es un complejo familiar que ofrece planes con todo incluido, ubicado en una playa de la zona hotelera de Puerto Vallarta, a 4 kilómetros del Aeropuerto Internacional Licenciado Gustavo Díaz Ordaz.
                                                     </p>
@@ -99,7 +99,7 @@ const Landing = () => {
                                             <div className={styles.containerDescription}>
                                                 <div className={styles.description}>
                                                     <h4>The Paramar Beachfront Boutique Hotel</h4>
-                                                    <p>
+                                                    <p className={styles.parrafoHotel}>
                                                         En pleno centro de la ciudad, a unos pasos de la playa, se encuentra The Paramar, un exclusivo hotel boutique en Puerto Vallarta.
                                                     </p>
                                                 </div>
@@ -119,7 +119,7 @@ const Landing = () => {
                                             <div className={styles.containerDescription}>
                                                 <div className={styles.description}>
                                                     <h4>Blue Horizon Residences</h4>
-                                                    <p>
+                                                    <p className={styles.parrafoHotel}>
                                                     Blue Horizon Residences Puerto Vallarta ubicado en la hermosa costa sur de Puerto Vallarta. Todos los condominios en Blue Horizon están completamente amueblados con vistas panorámicas del océano.
                                                     </p>
                                                 </div>
@@ -133,7 +133,7 @@ const Landing = () => {
                                             <div className={styles.containerDescription}>
                                                 <div className={styles.description}>
                                                     <h4>Secrets Bahia Mita Surf & Spa - Adults Only</h4>
-                                                    <p>
+                                                    <p className={styles.parrafoHotel}>
                                                     Secrets Bahia Mita Surf & SPA perfectamente ubicado en la exclusiva zona de Bahía de Banderas cerca de Punta Mita, y Marina Cruz de Huanacaxtle en las playas de arena dorada.
                                                     </p>
                                                 </div>
@@ -147,7 +147,7 @@ const Landing = () => {
                                             <div className={styles.containerDescription}>
                                                 <div className={styles.description}>
                                                     <h4>Villa La Estancia Beach Resort</h4>
-                                                    <p>
+                                                    <p className={styles.parrafoHotel}>
                                                     Experimente la magia de nuestros lujosos resorts, situados en dos de los destinos de playa más increíbles de México. Nuestras amplias suites en Los Cabos y Riviera Nayarit.
                                                     </p>
                                                 </div>
@@ -167,7 +167,7 @@ const Landing = () => {
                                         <div className={styles.containerDescription}>
                                             <div className={styles.description}>
                                                 <h4>Dreams Bahia Mita Surf & Spa</h4>
-                                                <p>
+                                                <p className={styles.parrafoHotel}>
                                                     Dreams Bahia Mita Surf & Spa te permite disfrutar de una ubicación estupenda en Punta de Mita, en la playa, a menos de 15 minutos en coche de Playa Punta De Mita y Playa Bucerías.
                                                 </p>
                                             </div>
@@ -181,7 +181,7 @@ const Landing = () => {
                                             <div className={styles.containerDescription}>
                                                 <div className={styles.description}>
                                                     <h4>The Hacienda at Krystal Altitude Vallarta</h4>
-                                                    <p>
+                                                    <p className={styles.parrafoHotel}>
                                                         El hotel todo incluido The Hacienda at Krystal Altitude Vallarta se encuentra en la hermosa Bahía de Banderas en Puerto Vallarta. Está diseñada para adultos y familias con niños de 13 años en adelante. 
                                                     </p>
                                                 </div>
@@ -195,7 +195,7 @@ const Landing = () => {
                                             <div className={styles.containerDescription}>
                                                 <div className={styles.description}>
                                                     <h4>Hotel Boutique</h4>
-                                                    <p>
+                                                    <p className={styles.parrafoHotel}>
                                                         Es un hecho establecido hace demasiado tiempo que un lector se distraerá con el contenido del texto de un sitio mientras que mira su diseño.
                                                     </p>
                                                 </div>
@@ -219,8 +219,8 @@ const Landing = () => {
                                 <div className={styles.divsImgActividad}>
                                     <img src={Actividad1} alt="Img Not Found"/>
                                     <div className={styles.containerDescriptionActividad}>
-                                        <h4>Actividades Al Aire Libre</h4>
-                                         <p>
+                                        <h4 className={styles.titleActivities}>Actividades Al Aire Libre</h4>
+                                         <p className={styles.parrafoActividad}>
                                             Es un hecho establecido hace demasiado tiempo que un lector se distraerá con el contenido del texto de un sitio mientras que mira su diseño.
                                         </p>
                                         <Link to="/home/Cancun/activities">
@@ -233,7 +233,7 @@ const Landing = () => {
                                     <img src={Actividad2} alt="Img Not Found"/>
                                     <div className={styles.containerDescriptionActividad}>
                                         <h4>Gimnacio</h4>
-                                         <p>
+                                         <p className={styles.parrafoActividad}>
                                             Es un hecho establecido hace demasiado tiempo que un lector se distraerá con el contenido del texto de un sitio mientras que mira su diseño.
                                         </p>
                                         <Link to="/home/Playa Paraíso, Tulum/activities">
@@ -246,7 +246,7 @@ const Landing = () => {
                                     <img src={Actividad3} alt="Img Not Found"/>
                                     <div className={styles.containerDescriptionActividad}>
                                         <h4>Tiro con Arco</h4>
-                                         <p>
+                                         <p className={styles.parrafoActividad}>
                                             Es un hecho establecido hace demasiado tiempo que un lector se distraerá con el contenido del texto de un sitio mientras que mira su diseño.
                                         </p>
                                         <Link to="/home/Puerto Vallarta/activities">
@@ -259,7 +259,7 @@ const Landing = () => {
                                     <img src={Actividad4} alt="Img Not Found"/>
                                     <div className={styles.containerDescriptionActividad}>
                                         <h4>Avistamiento de Ballenas</h4>
-                                         <p>
+                                         <p className={styles.parrafoActividad}>
                                             Es un hecho establecido hace demasiado tiempo que un lector se distraerá con el contenido del texto de un sitio mientras que mira su diseño.
                                         </p>
                                         <Link to="/home/Cancun/activities">
@@ -272,7 +272,7 @@ const Landing = () => {
                                     <img src={Actividad5} alt="Img Not Found"/>
                                     <div className={styles.containerDescriptionActividad}>
                                         <h4>Andar En Bicicleta</h4>
-                                         <p>
+                                         <p className={styles.parrafoActividad}>
                                             Es un hecho establecido hace demasiado tiempo que un lector se distraerá con el contenido del texto de un sitio mientras que mira su diseño.
                                         </p>
                                         <Link to="/home/Playa Paraíso, Tulum/activities">
@@ -285,7 +285,7 @@ const Landing = () => {
                                     <img src={Actividad6} alt="Img Not Found"/>
                                     <div className={styles.containerDescriptionActividad}>
                                         <h4>Correr</h4>
-                                         <p>
+                                         <p className={styles.parrafoActividad}>
                                             Es un hecho establecido hace demasiado tiempo que un lector se distraerá con el contenido del texto de un sitio mientras que mira su diseño.
                                         </p>
                                         <Link to="/home/Puerto Vallarta/activities">

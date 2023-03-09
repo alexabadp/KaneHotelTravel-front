@@ -15,6 +15,8 @@ const Home = () => {
   const dispatch = useDispatch();
   const { isAuthenticated } = useAuth0();
 
+  console.log("prueba de ejecucion de componente Home");
+
   useEffect(() => {
     dispatch(getCities());
   }, [dispatch]);

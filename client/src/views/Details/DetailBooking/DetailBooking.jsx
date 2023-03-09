@@ -39,6 +39,8 @@ const DetailBooking = () => {
   const [reservationResponse, setReservationResponse] = useState({});
   const [data, setData] = useState({
     hotel: location.state.name,
+    hotelId: location.state.id,
+    idRooms: [],
     name: "",
     lastname: "",
     email: "",
@@ -146,6 +148,7 @@ const DetailBooking = () => {
             console.log("el elemento ya existe");
           } else {
             newArray.push({
+              id: e.id,
               name: e.name,
               image: e.image,
               description: e.description,
@@ -248,7 +251,9 @@ const DetailBooking = () => {
       <NavBar />
       <div className={style.banner}>
         <div className={style.image}>
+          <div className={style.containerImg}>
           <img src={location.state.image} alt="Imagen" />
+          </div>
           <div class=" align-items-end">
             <h2 className={style.detalleTitulo}>
               Hotel: {location.state.name}

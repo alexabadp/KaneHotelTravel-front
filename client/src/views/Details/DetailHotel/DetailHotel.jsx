@@ -19,7 +19,7 @@ const DetailHotel = () => {
   useEffect(() => {
     dispatch(getDetailHotel(params.hotel));
   }, []);
-
+  console.log(detailHotel, "detalle del hotel")
   return (
     <div className={styles.containerDetailHotel}>
       <NavBar />
@@ -51,6 +51,7 @@ const DetailHotel = () => {
             <Link
               to="/detail/booking"
               state={{
+                id: detailHotel.id,
                 name: detailHotel.name,
                 image: detailHotel.image,
                 rooms: detailHotel.rooms,

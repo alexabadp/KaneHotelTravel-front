@@ -11,11 +11,11 @@ import Hotels from "./components/Hotel/Hotels";
 import Activities from "./components/Activity/Activities";
 import CreateHotel from "./views/Forms/CreateHotel/CreateHotel";
 import DetailBooking from "./views/Details/DetailBooking/DetailBooking";
-//axios.defaults.baseURL = "https://backend-kanehoteltravel-production.up.railway.app";
-// axios.defaults.baseURL = import.meta.env.VITE_BASE_URL;
-axios.defaults.baseURL = "http://localhost:3001";
-// axios.defaults.baseURL =
-//   "https://backend-kanehoteltravel-production.up.railway.app/";
+import UserData from "./views/UserProfile/UserData/UserData";
+import Bookings from "./views/UserProfile/Bookings/Bookings";
+// axios.defaults.baseURL = "http://localhost:3001";
+axios.defaults.baseURL =
+  "https://backend-kanehoteltravel-production.up.railway.app/";
 
 function App() {
   return (
@@ -33,6 +33,9 @@ function App() {
         />
         <Route path="/detail/booking" element={<DetailBooking />} />
         <Route path="/backoffice/hotel/create" element={<CreateHotel />} />
+        <Route path="/profile/userData" element={<UserData/>}/>
+        <Route path="/profile/bookings/:email" element={<Bookings/>}/>
+
       </Routes>
     </div>
   );

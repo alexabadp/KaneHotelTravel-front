@@ -34,7 +34,9 @@ const NavBar = () => {
             {isAuthenticated ? (
               <div className={styles.navBarLogin}>
                 <div className={styles.navBarLoginElements}>
-                  <Profile />
+                  <Link to="/profile/userData">
+                    <Profile />
+                  </Link>
                 </div>
                 <div className={styles.navBarLoginElements}>
                   <LogoutButton />

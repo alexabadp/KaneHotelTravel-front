@@ -12,9 +12,9 @@ import Activities from "./components/Activity/Activities";
 import CreateHotel from "./views/Forms/CreateHotel/CreateHotel";
 import DetailBooking from "./views/Details/DetailBooking/DetailBooking";
 // axios.defaults.baseURL = import.meta.env.VITE_BASE_URL;
-// axios.defaults.baseURL = "http://localhost:3001";
-axios.defaults.baseURL =
-  "https://backend-kanehoteltravel-production.up.railway.app/";
+axios.defaults.baseURL = "http://localhost:3001";
+// axios.defaults.baseURL =
+//   "https://backend-kanehoteltravel-production.up.railway.app/";
 
 function App() {
   return (

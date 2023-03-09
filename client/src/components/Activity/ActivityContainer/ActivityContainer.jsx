@@ -2,11 +2,10 @@ import { Link, useParams } from "react-router-dom";
 import ActivityCard from "../ActivityCard/ActivityCard";
 import style from "./ActivityContainer.module.css";
 
-const ActivityContainer = (props) => {
+const ActivityContainer = (props, cityHotel) => {
   const params = useParams();
 
   const city = params.city;
-  // console.log(city);
 
   const activities = props.activities;
 
@@ -18,7 +17,7 @@ const ActivityContainer = (props) => {
           activities.map((c) => {
             return (
               <div key={c.id} className={style.activityContainer}>
-                <Link to={`/${city}/activity/${c.name}`}>
+                <Link to={`/home/${city}/activity/${c.name}`}>
                   <ActivityCard
                     id={c.id}
                     name={c.name}

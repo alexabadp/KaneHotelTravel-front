@@ -2,51 +2,45 @@ import "react-datepicker/dist/react-datepicker.css";
 import "react-calendar/dist/Calendar.css";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { Link } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
-import { Elements } from "@stripe/react-stripe-js";
-import Select from "react-select";
-import Calendar from "react-calendar";
 import dayjs from "dayjs";
 import React from "react";
 import Button from "react-bootstrap/Button";
-import Col from "react-bootstrap/Col";
-import Form from "react-bootstrap/Form";
-import Row from "react-bootstrap/Row";
 import style from "./DetailBooking.module.css";
-import Modal from "react-bootstrap/Modal";
-import CheckoutForm from "../../../components/CheckoutForm/CheckoutForm";
+import UserData from "./MultiStepForm/UserData";
+import RoomSelect from "./MultiStepForm/RoomSelect";
+import BookingBuy from "./MultiStepForm/BookingBuy";
 import NavBar from "../../../components/NavBar/NavBar";
+import SuccessfulReservation from "../../../components/SuccessfulReservation/SuccessfulReservation";
 
 function validate(data, dateValue) {
   const errors = {};
-  if (!data.name) errors.name = "The Name is required";
-  if (!data.lastname) errors.lastname = "The Last Name id required";
-  if (!data.email) errors.email = "The E-mail is required";
+  if (!data.name) errors.name = "El Nombre es requerido";
+  if (!data.lastname) errors.lastname = "El Apellido es requerido";
+  if (!data.email) errors.email = "El Correo es requerido";
   const regex =
     /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
   if (!data.email || regex.test(data.email) === false)
-    errors.typeEmail = " / The type E-mail is invalid";
-  if (!data.phone) errors.phone = "The Phone is required";
+    errors.typeEmail = " / El tipo de Correo ingresado es invalido";
+  if (!data.phone) errors.phone = "El numero de telefono es requerido";
   if (data.phone.length > 10 || isNaN(data.phone))
-    errors.typePhone = "The type Phone is invalid";
-  if (!data.id) errors.id = "Id is required";
+    errors.typePhone = "El formato de telefono ingresado es invalido";
+  if (!data.id) errors.id = "El Dni / Pasaporte es requerido";
   if (isNaN(data.id) || data.id.length > 8)
-    errors.idType = "Id type is invalid";
-  if (!data.rooms.length) errors.rooms = "Pleace select Room";
-  if (!dateValue[0]) errors.checkin = "Date Check-In is required";
+    errors.idType = "El tipo de Dni es invalido";
+  if (!data.rooms.length) errors.rooms = "Selecciona la habitacion a reservar";
+  if (!dateValue[0]) errors.checkin = "La fecha de Check-In es requerida";
   return errors;
 }
 
 const DetailBooking = () => {
   const location = useLocation();
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-  const amountHardCode = 10; //10usd
-  const descriptionHardCode = "Descripcion del pago"; //10usd
-  const [dateValue, setCheckIn] = useState(new Date());
+  const [successfulReservation, setSuccessfulReservation] = useState(false);
+  const [reservationResponse, setReservationResponse] = useState({});
   const [data, setData] = useState({
+    hotel: location.state.name,
+    hotelId: location.state.id,
+    idRooms: [],
     name: "",
     lastname: "",
     email: "",
@@ -56,37 +50,29 @@ const DetailBooking = () => {
     checkout: "",
     rooms: [],
     price: 0,
+    image: [],
+    datosRoom: location.state.rooms,
   });
-  0;
-  // const stripePromise = loadStripe(import.meta.env.VITE_KEY_STRIPE)
+
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const amountHardCode = data.price; //10usd
+  const descriptionHardCode = "Descripcion del pago"; //10usd
+  const [dateValue, setCheckIn] = useState(new Date());
+
+  // const stripePromise = loadStripe(import.meta.env.VITE_KEY_STRIPE);
   const stripePromise = loadStripe(
     "pk_test_51MeUSYJo5kAZGuTWTiN6NsA5FRMyqId8smjQOgEObJw8rbCeHijt3N58dI0J5HfF48lROYvHLIzLE2QjAk8skODA00D3KU6iNb"
   );
-  //Validacion
   const [error, setError] = useState({});
-  const [botonActive, setActive] = useState(false);
+  const [botonActive, setActive] = useState(true);
+
   useEffect(() => {
     const validations = validate(data, dateValue);
     setError(validations);
+    setActive(true);
   }, [data]);
-  useEffect(() => {
-    if (
-      !error.name &&
-      !error.lastname &&
-      !error.email &&
-      !error.typeEmail &&
-      !error.phone &&
-      !error.typePhone &&
-      !error.id &&
-      !error.idType &&
-      !error.rooms &&
-      !error.checkin
-    ) {
-      setActive(true);
-    } else {
-      setActive(false);
-    }
-  }, [error]);
 
   //formato de fecha
   const formatDate = (date) => {
@@ -125,11 +111,10 @@ const DetailBooking = () => {
     setData({ ...data, [input]: value });
   };
 
-  let totalPrice = 0;
-
   const datosRoom = location.state.rooms?.map((e) => {
     return { label: e.name, value: e.name };
   });
+
   const handlerOption = (event) => {
     const roomName = event.value;
     let newArray = data.rooms;
@@ -140,259 +125,187 @@ const DetailBooking = () => {
       setData({ ...data, rooms: [...data.rooms, roomName] });
     }
   };
-  //   function priceTotal(){
-  //     const array = location.state.rooms
-  //     const nameRoom = data.rooms
-  //     for(let i = 0; i < nameRoom.length; i++){
-  //       for(let obj of array){
-  //        if(obj.name == nameRoom[i]){
-  //         return totalPrice = totalPrice + obj.price
-  //        }
-  //     }
-  //   }
 
-  // }
-  // priceTotal()
+  //guardar precio en el estado //imagen en el estado
+  useEffect(() => {
+    let room = data.rooms;
+    let datos = data.datosRoom;
+    let total = 0;
+    let newArray = [];
+    const price = room?.forEach((element) => {
+      return datos?.find((e) => {
+        if (element === e.name) {
+          total = total + e.price;
+        }
+      });
+    });
 
+    const imagenRoom = room?.forEach((element) => {
+      return datos?.find((e) => {
+        if (element === e.name) {
+          const obj = newArray.find((f) => f.name === e.name);
+          if (obj) {
+            console.log("el elemento ya existe");
+          } else {
+            newArray.push({
+              id: e.id,
+              name: e.name,
+              image: e.image,
+              description: e.description,
+            });
+          }
+        }
+      });
+    });
+    setData({ ...data, price: total, image: newArray });
+  }, [data.rooms]);
+
+  //Eliminar
   const handleDelete = (event) => {
     setData({
       ...data,
       rooms: data.rooms.slice().filter((e) => e !== event),
+      image: data.image.slice().filter((e) => e.name !== event),
     });
   };
 
-  return (
+  //MultiStepForms
+  const [page, setPage] = useState(0);
+  const FormTitle = [
+    "Ingrese sus Datos",
+    "Datos de la Habitacion",
+    "Finalize su reserva",
+  ];
+  const PageDisplay = () => {
+    if (page === 0) {
+      return (
+        <UserData
+          page={page}
+          data={data}
+          error={error}
+          handlerInputName={handlerInputName}
+          handlerInputLastname={handlerInputLastname}
+          handlerInputEmail={handlerInputEmail}
+          handlerInputCity={handlerInputCity}
+          handlerInputId={handlerInputId}
+          validate={validate}
+        />
+      );
+    } else if (page === 1) {
+      return (
+        <RoomSelect
+          page={page}
+          setActive={setActive}
+          location={location}
+          error={error}
+          data={data}
+          datosRoom={datosRoom}
+          handlerOption={handlerOption}
+          handleDelete={handleDelete}
+          formatDate={formatDate}
+          setCheckIn={setCheckIn}
+          dateValue={dateValue}
+        />
+      );
+    } else {
+      return (
+        <BookingBuy
+          setReservationResponse={setReservationResponse}
+          setSuccessfulReservation={setSuccessfulReservation}
+          error={error}
+          stripePromise={stripePromise}
+          handleClose={handleClose}
+          handleShow={handleShow}
+          amountHardCode={amountHardCode}
+          descriptionHardCode={descriptionHardCode}
+          show={show}
+          setShow={setShow}
+          location={location}
+          data={data}
+        />
+      );
+    }
+  };
+  useEffect(() => {
+    if (
+      !error.name &&
+      !error.lastname &&
+      !error.email &&
+      !error.typeEmail &&
+      !error.phone &&
+      !error.typePhone &&
+      !error.id &&
+      !error.idType
+    ) {
+      setActive(true);
+    } else {
+      setActive(false);
+    }
+  }, [error]);
+
+  console.log(data.hotel);
+  return successfulReservation ? (
+    <SuccessfulReservation res={reservationResponse} hotel={data.hotel} />
+  ) : (
     <div className={style.containerBookingGeneral}>
       <NavBar />
-      <div className={style.detailBookingContainer}>
-        <div>
-          <Form>
-            <Row className="mb-3">
-              <Form.Group as={Col}>
-                <Form.Label className={style.titleBooking}>
-                  First Name
-                </Form.Label>
-                <Form.Control
-                  onChange={(e) => handlerInputName(e)}
-                  name="name"
-                  type="text"
-                  placeholder="Your Name"
-                />
-              </Form.Group>
-              {error.name && <span className={style.fail}>{error.name}</span>}
-
-              <Form.Group as={Col}>
-                <Form.Label className={style.titleBooking}>
-                  Last Name
-                </Form.Label>
-                <Form.Control
-                  onChange={(e) => handlerInputLastname(e)}
-                  name="lastname"
-                  type="text"
-                  placeholder="Your Last Name"
-                />
-                {error.lastname && (
-                  <span className={style.fail}>{error.lastname}</span>
-                )}
-              </Form.Group>
-            </Row>
-
-            <Form.Group className="mb-3" controlId="formGridEmail">
-              <Form.Label className={style.titleBooking}>Your Email</Form.Label>
-              <Form.Control
-                onChange={(e) => handlerInputEmail(e)}
-                name="email"
-                placeholder="user@email"
-              />
-              {error.email && <span className={style.fail}>{error.email}</span>}
-              {error.typeEmail && (
-                <span className={style.fail}>{error.typeEmail}</span>
-              )}
-            </Form.Group>
-
-            <Row className="mb-3">
-              <Form.Group as={Col}>
-                <Form.Label className={style.titleBooking}>Phone</Form.Label>
-                <Form.Control
-                  placeholder="Input Only Numbers Max: 10"
-                  onChange={(e) => handlerInputCity(e)}
-                  name="phone"
-                />
-                {error.phone && (
-                  <span className={style.fail}>{error.phone}</span>
-                )}
-                {error.typePhone && (
-                  <span className={style.fail}>{error.typePhone}</span>
-                )}
-              </Form.Group>
-
-              <Form.Group as={Col}>
-                <Form.Label className={style.titleBooking}>ID</Form.Label>
-                <Form.Control onChange={(e) => handlerInputId(e)} name="id" />
-                {error.id && <span className={style.fail}>{error.id}</span>}
-                {error.idType && (
-                  <span className={style.fail}>{error.idType}</span>
-                )}
-              </Form.Group>
-            </Row>
-
-            <Form.Group as={Col} controlId="formGridState">
-              <Form.Label className={style.titleBooking}>Rooms</Form.Label>
-              <Select
-                options={datosRoom}
-                placeholder="Choice Room"
-                onChange={handlerOption}
-              />
-              {error.rooms && <span className={style.fail}>{error.rooms}</span>}
-            </Form.Group>
-
-            <Form.Label className={style.titleBooking}>
-              Check-In / Check-Out
-            </Form.Label>
-            <div>
-              <Calendar
-                minDate={new Date()}
-                selectRange={true}
-                onChange={(e) => setCheckIn(e)}
-                value={dateValue}
-              />
-              {error.checkin && (
-                <span className={style.fail}>{error.checkin}</span>
-              )}
-              {error.checkout && (
-                <span className={style.fail}>{error.checkout}</span>
-              )}
-            </div>
-            <div>
-              <div>
-                {dateValue[0] && dateValue[1] > 1 && (
-                  <>
-                    <Form.Label className={style.titleBooking}>
-                      <p>Check In: {formatDate(dateValue[0])}</p>
-                      <p>Check Out: {formatDate(dateValue[1])}</p>
-                    </Form.Label>
-                  </>
-                )}
-              </div>
-            </div>
-            <div className={style.modal}>
-              <>
-                <Link to={`/`}>
-                  <Button className={style.button} variant="primary">
-                    Cancel
-                  </Button>
-                </Link>
-                <Button
-                  id="btn-Summit"
-                  disabled={!botonActive}
-                  variant="primary"
-                  onClick={handleShow}
-                  className={style.button}
-                >
-                  Finalize Reservation
-                </Button>
-                <Modal show={show} onHide={handleClose}>
-                  <Modal.Header closeButton>
-                    <Modal.Title>Booking Summary</Modal.Title>
-                  </Modal.Header>
-                  <Modal.Body>
-                    <ul className={style.titleBooking}>
-                      <p className={style.titleBooking}>
-                        Hotel: {location.state.name}
-                      </p>
-                      <p className={style.titleBooking}>Name: {data.name}</p>
-                      <p className={style.titleBooking}>
-                        Last Name: {data.lastname}
-                      </p>
-                      <p className={style.titleBooking}>ID: {data.id}</p>
-                      <p className={style.titleBooking}>
-                        Rooms:{" "}
-                        {data.rooms?.map((e) => {
-                          return <p key={e}>{e}</p>;
-                        })}
-                      </p>
-                      <p className={style.titleBooking}>
-                        Total Price: ${data.price}
-                      </p>
-                    </ul>
-                    <div className={style.stripe}>
-                      <Form.Group className="mb-3" controlId="formGridEmail">
-                        <Elements stripe={stripePromise}>
-                          <CheckoutForm
-                            totalPayment={amountHardCode}
-                            descriptionPayment={descriptionHardCode}
-                          />
-                        </Elements>
-                      </Form.Group>
-                    </div>
-                  </Modal.Body>
-                  <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                      Close
-                    </Button>
-                  </Modal.Footer>
-                </Modal>
-              </>
-            </div>
-            {/* <Button className={style.button} variant="primary" type="submit">
-              Submit
-            </Button> */}
-          </Form>
-        </div>
-        <div className={style.hotel}>
-          <div className={style.image}>
-            <h2 className={style.title1}>{location.state.name}</h2>
-
-            <img src={location.state.image} alt="Imagen" />
+      <div className={style.banner}>
+        <div className={style.image}>
+          <div className={style.containerImg}>
+          <img src={location.state.image} alt="Imagen" />
           </div>
-          <div className={style.hotel}>
-            {data.rooms?.map((e) => {
-              return (
-                <div key={e}>
-                  <div className={style.title1}>
-                    <button
-                      type="button"
-                      onClick={() => handleDelete(e)}
-                      className={style.btnDelete}
-                    >
-                      X
-                    </button>
-                    <h2>{e}</h2>
-                  </div>
-                  {/* <div className={style.image}>
-                    <img src={e[0]?.image} alt="Imagen" />
-                  </div> */}
-                </div>
-              );
-            })}
+          <div class=" align-items-end">
+            <h2 className={style.detalleTitulo}>
+              Hotel: {location.state.name}
+            </h2>
+            <p>{location.state.description}</p>
           </div>
         </div>
+      </div>
+      <div className={style.progressbar}>
+        <div
+          style={{ width: page == 0 ? "33.3%" : page == 1 ? "66.6%" : "100%" }}
+        ></div>
+        
+      </div>
+      <div>
+        <form>
+          <div className={style.item}>
+            <div>
+            <h2>{FormTitle[page]}</h2>
+            </div>
+            <div className={style.containerButtom}>
+            <Button
+            className={style.buttonDetail}
+            disabled={page == 0}
+            onClick={() => {
+              setPage((currentPage) => currentPage - 1);
+            }}
+          >
+            Anterior
+          </Button>
+            {page > 1 ? <Button
+              id="btn-Summit"
+              variant="primary"
+              onClick={handleShow}
+              className={style.buttonDetail}
+            >
+              Finalice la Reserva
+            </Button> : <Button
+            className={style.buttonDetail}
+            disabled={!botonActive}
+            onClick={() => {
+              setPage((currentPage) => currentPage + 1);
+            }}
+          >
+            Siguiente
+          </Button>}
+          </div>
+          </div>
+          {PageDisplay()}
+        </form>
       </div>
     </div>
   );
 };
-
 export default DetailBooking;
-
-{
-  /* <div>
-							<button
-								className={styles.containerButton}
-								type="submit"
-								disabled={
-									!input.name ||
-									!input.types.length > 0 ||
-									errors.name ||
-									errors.life ||
-									errors.attack ||
-									errors.defense ||
-									errors.speed ||
-									errors.height ||
-									errors.weight ||
-									errors.img ||
-									errors.types
-								}>
-								SUBMIT
-							</button>
-						</div> */
-}

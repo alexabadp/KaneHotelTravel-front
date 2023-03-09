@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import NavBar from "../../../components/NavBar/NavBar";
 import styles from "./optionsUser.module.css";
-import {Container ,FormGroup, Input} from "reactstrap";
+// import {Container ,FormGroup, Input} from "reactstrap";
 import { useAuth0 } from "@auth0/auth0-react";
 
 

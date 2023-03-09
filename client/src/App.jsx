@@ -13,7 +13,7 @@ import CreateHotel from "./views/Forms/CreateHotel/CreateHotel";
 import DetailBooking from "./views/Details/DetailBooking/DetailBooking";
 import UserData from "./views/UserProfile/UserData/UserData";
 import Bookings from "./views/UserProfile/Bookings/Bookings";
-// axios.defaults.baseURL = "http://localhost:3001";
+// axios.defaults.baseURL = "http://localhost:3000";
 axios.defaults.baseURL =
   "https://backend-kanehoteltravel-production.up.railway.app/";
 

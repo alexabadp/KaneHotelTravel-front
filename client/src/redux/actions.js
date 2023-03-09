@@ -80,7 +80,7 @@ export const getDetailActivity = (activity) => {
 
 export const getBookingsUser = (email) => {
   return async function (dispatch) {
-    const dbData = await bindActionCreators.get(`/bookings/${email}`)
+    const dbData = await axios.get(`/bookings/${email}`)
     const bookings = dbData.data;
     dispatch({
       type: GET_BOOKINGS,

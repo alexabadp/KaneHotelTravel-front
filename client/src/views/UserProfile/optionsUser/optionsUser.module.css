@@ -54,9 +54,16 @@
 }
 
 .containerOptions{
+    color: white;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    margin-top: 25px;
+    margin-top: 0;
+    padding: 20px;
+    background-color: #273245;
+}
+
+.name{
+    margin-bottom: 25px;
 }

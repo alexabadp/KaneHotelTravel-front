@@ -5,6 +5,7 @@ import OptionsUser from "../optionsUser/optionsUser";
 import { Formik, Form, Field } from "formik";
 import { useAuth0 } from "@auth0/auth0-react";
 import * as Yup from "yup";
+import Footer from "../../Landing/Footer/Footer";
 
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
@@ -39,10 +40,10 @@ function UserData (){
             <Formik
             initialValues={{
                 name: user.name,
-                // lastName: "Rios Maya",
                 email: user.email,
-                phoneNumber: user.phone_number_verified,
-                genero: user.gender,
+                phoneNumber: "3156306686",
+                genero: "masculino",
+                adress: "casa 10",
                 contactName: "Juan Carlos",
                 contactLastName: "Diaz",
                 phoneNumberContact: "3175254910",
@@ -53,8 +54,8 @@ function UserData (){
 
             {({ errors, touched }) => (
                     <div className={styles.containerData}>
+                        <h3 className={styles.titleUserData}>Datos de usuario</h3>
                         <Form className={styles.formData}>
-                        <h3>Datos de usuario</h3>
                         <div className={styles.inputContainer}>
                             <label htmlFor="name">Nombre</label>
                             <Field name="name" type="text" placeholder="Nombres" disabled={editData} className={styles.input}/>
@@ -62,13 +63,6 @@ function UserData (){
                                 <div className={styles.errors}>{errors.name}</div>
                             ) : null}
                         </div>
-                        {/* <div className={styles.inputContainer}>
-                            <label htmlFor="lastName">Apellidos</label>
-                            <Field name="lastName" type="text" placeholder="Apellidos" disabled={editData} className={styles.input}/>
-                            {errors.lastName && touched.lastName ? (
-                                <div className={styles.errors}>{errors.lastName}</div>
-                            ) : null}
-                        </div> */}
                         <div className={styles.inputContainer}>
                             <label htmlFor="email">Email</label>
                             <Field name="email" type="text" placeholder="example@mail.com" disabled="true" className={styles.input}/>
@@ -85,17 +79,18 @@ function UserData (){
                         </div>
                         <div className={styles.inputContainer}>
                             <label>Genero</label>
-                            <Field as="select" name="genero" disabled={editData} className={styles.input}>
-                                <option>Masculino</option>
+                            <Field type="text" name="genero" disabled={editData} className={styles.input}/>
+                                {/* <option>Masculino</option>
                                 <option>Femenino</option>
                                 <option>Otro</option>
-                            </Field>
+                            </Field> */}
                             {/* <Field type="text" name="genero" disabled={editData} className={styles.input}/> */}
                         </div>
                         <div className={styles.inputContainer}>
                             <label>Dirección</label>
                             <Field type="text" name="adress" disabled={editData} className={styles.input} placeholder="Dirección"/>
                         </div>
+                        
                         {/* <div>
                             <h4>Contacto de emergencia</h4>
                             <div className={styles.inputContainer}>
@@ -127,9 +122,13 @@ function UserData (){
         (<h3>No has iniciado sesión</h3>)
 
         }
-            
+
+    <div>
+    <Footer/>
+    </div>  
        
-    </div>)
+    </div>
+    )
 }
 
 export default UserData;

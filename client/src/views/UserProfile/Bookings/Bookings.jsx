@@ -2,7 +2,8 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { getBookingsUser } from "../../../redux/actions";
+import { getBookingsUser, getHotels } from "../../../redux/actions";
+import Footer from "../../Landing/Footer/Footer";
 import OptionsUser from "../optionsUser/optionsUser";
 import styles from "./Booking.module.css"
 
@@ -15,28 +16,50 @@ import styles from "./Booking.module.css"
 function Bookings(){
 
     const dispatch = useDispatch()
-    const state = useSelector((state) => state.bookings)
+    const bookings = useSelector((state) => state.bookings)
+    const hoteles = useSelector((state) => state.hotels)
     const params = useParams()
+    const fecha = new Date()
+    const fechaActual = fecha.toLocaleDateString()
 
     useEffect(() => {
-        getBookingsUser()
+        dispatch(getBookingsUser(params.email))
+        console.log(fechaActual)
     }, [])
 
     return(<div>
         <OptionsUser/>
-        <h3>Bookings</h3>
-        {state.length?
-            state.map((b) => (
-            <Link to={`/${b.city}/hotel/${b.name}`}>
-            <div className={styles.bookingContainer}>
-                <strong><p>{b.name}</p></strong>
-                <p>id: {b.id}</p>
-                <p><strong>state:</strong> {b.state}</p>
-            </div>
-            </Link>
-            )):
-            <h5>No hay reservas</h5>
-        }
+        <h3 className={styles.titleBookings}>Bookings</h3>
+        <div className={styles.bookings}>
+            {bookings.length?
+                bookings.map((b) => (
+                // <Link to={`/${b.city}/hotel/${b.hotel.name}`}>
+                <div className={styles.bookingContainer}>
+                    <div className={styles.dato}>
+                        <p><strong>Hotel:</strong> {b.hotel.name}</p>
+                    </div>
+                    <div className={styles.dato}>
+                        <p><strong>Checkin: </strong> {b.checkin}</p>
+                    </div>
+                    <div className={styles.dato}>
+                        <p><strong>Checkout: </strong> {b.checkout}</p>
+                    </div>
+                    <div className={styles.dato}>
+                        <p><strong>id: </strong> {b.id}</p>
+                    </div>
+                    <div className={styles.dato}>
+                        <p><strong>state:</strong> {fechaActual <= b.checkout ? "expirada" : "activa"}</p>
+                    </div>
+                </div>
+                // </Link>
+                )):
+                <h5>No hay reservas</h5>
+            }
+        </div>
+
+        <div>
+            <Footer/>
+        </div>
         
     </div>)
 }

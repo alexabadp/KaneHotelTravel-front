@@ -52,6 +52,7 @@ function OptionsUser() {
               />
               {/* <button onClick={document.getElementById("inputFile").click()}>Actualizar</button> */}
             </div>
+            <h2 className={styles.name}>{user.name}</h2>
 
           <div className={styles.NavProfile}>
               <Link 
@@ -61,7 +62,7 @@ function OptionsUser() {
                   Mis datos
               </Link>
               <Link 
-                to="/profile/bookings"
+                to={`/profile/bookings/${user.email}`}
                 className={styles.link}
               >
                   Reservas

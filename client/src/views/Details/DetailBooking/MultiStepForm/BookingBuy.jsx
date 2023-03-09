@@ -85,7 +85,7 @@ const BookingBuy = ({
                 </div>
               </Modal.Body>
               <Modal.Footer className={style.footer}>
-                <Link to={`/`}>
+                <Link to={`/home`}>
                   <Button className={style.button} variant="secondary">
                     Cancelar
                   </Button>

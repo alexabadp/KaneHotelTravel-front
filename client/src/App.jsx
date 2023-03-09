@@ -21,7 +21,7 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        {/* <Route exact path="/" element={<Landing />} />
+        <Route exact path="/" element={<Landing />} />
         <Route path="/home" exact element={<Home />} />
         <Route path="/home/:city" element={<DetailCity />} />
         <Route path="/home/:city/hotels" element={<Hotels />} />
@@ -32,28 +32,7 @@ function App() {
           element={<DetailActivity />}
         />
         <Route path="/detail/booking" element={<DetailBooking />} />
-        <Route path="/backoffice/hotel/create" element={<CreateHotel />} /> */}
-        <Route exact path="/" element={<Landing />} />
-        <Route exact path="/home" element={<Home />} />
-        <Route exact path="/home/:city" element={<DetailCity />} />
-        <Route exact path="/home/:city/hotels" element={<Hotels />} />
-        <Route exact path="/home/:city/activities" element={<Activities />} />
-        <Route
-          exact
-          path="/home/:city/hotel/:hotel"
-          element={<DetailHotel />}
-        />
-        <Route
-          exact
-          path="/home/:city/activity/:activity"
-          element={<DetailActivity />}
-        />
-        <Route exact path="/detail/booking" element={<DetailBooking />} />
-        <Route
-          exact
-          path="/backoffice/hotel/create"
-          element={<CreateHotel />}
-        />
+        <Route path="/backoffice/hotel/create" element={<CreateHotel />} />
       </Routes>
     </div>
   );

@@ -22,7 +22,7 @@ body {
 .progressbar div {
   width: 33.3%;
   height: 100%;
-  background-color: rgb(98, 0, 255);
+  background-color: rgb(27, 27, 89);
 }
 .containerBookingGeneral{
     display: flex;

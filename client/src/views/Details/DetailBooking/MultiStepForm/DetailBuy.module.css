@@ -1,16 +1,31 @@
 .body{
-  background-color: rgb(92, 93, 99);
+  background-color: rgb(27, 27, 89);
   color: rgb(255, 255, 255);
+}
+.containerDiv{
+  display: flex;
+  flex-direction: column;
+}
+.h3Div{
+  display: flex;  
+  align-items: center;
+  gap: 2rem;
+}
+.p{
+  margin-top: 16px;
 }
 .footer{
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  background-color: antiquewhite;
 }
 .button {
   margin-right: 15px;
 }
-
+.tituloBooking{
+  background-color: antiquewhite;
+}
 .titleBooking {
   font-family: "Josefin Sans", sans-serif;
   font-size: 22px;
@@ -21,9 +36,7 @@
   font-size: 30px;
 }
 .modal {
-  display: flex;
-  margin-top: 15px;
-  justify-content: left;
+   
   gap: 1rem;
 }
 

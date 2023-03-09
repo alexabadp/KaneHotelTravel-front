@@ -6,6 +6,7 @@ export const GET_HOTEL_DETAIL = "GET_HOTEL_DETAIL";
 export const GET_ACTIVITY_DETAIL = "GET_ACTIVITY_DETAIL";
 export const GET_HOTELS = "GET_HOTELS";
 export const GET_ACTIVITIES = "GET_ACTIVITIES";
+export const GET_BOOKINGS = "GET_BOOKINGS"
 
 export const getCities = () => {
   return async function (dispatch) {
@@ -76,3 +77,14 @@ export const getDetailActivity = (activity) => {
     });
   };
 };
+
+export const getBookingsUser = (email) => {
+  return async function (dispatch) {
+    const dbData = await bindActionCreators.get(`/bookings/${email}`)
+    const bookings = dbData.data;
+    dispatch({
+      type: GET_BOOKINGS,
+      payload: bookings,
+    })
+  }
+}

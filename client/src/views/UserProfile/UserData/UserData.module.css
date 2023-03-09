@@ -1,0 +1,109 @@
+.container{
+    width: 100%;
+    display: flex;
+    /* align-items: center; */
+    /* justify-content: center; */
+    flex-direction: column;
+}
+
+.containerData{
+    margin-left: 0px;
+    margin: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.inputContainer{
+    /* width: 700px; */
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 15px;
+    margin-left: 0px;
+}
+
+.input{
+    padding: 5px;
+    width: 600px;
+    height: 40px;
+    color: rgb(14, 14, 14);
+    font-weight: bold;
+    /* border: 1px solid rgba(0, 0, 0, 0.603); */
+    border: none;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.623);
+    background-color: rgb(241, 241, 241);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    transition: all 0.3s;
+}
+
+.input:focus{
+    background-color: rgb(245, 245, 245);
+    border: none;
+}
+
+.formData{
+    width: 60%;
+    padding: 50px;
+    margin: 0px;
+    display: flex;
+    border: none;
+    background-color: #273245;
+    border-radius: 5px;
+    flex-direction: column;
+    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.527);
+}
+
+.containerButtons{
+    margin: 20px;
+    display: flex;
+}
+
+.button{
+    margin: 10px;
+    background-color: rgb(230, 230, 230);
+    /* border: 1px solid black; */
+    border: none;
+    border-radius: 5px;
+    color: black;
+    width: 100px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+}
+
+.button:hover{
+    background-color: rgb(221, 130, 45);
+}
+
+.update{
+    margin: 10px;
+    background-color: rgb(207, 207, 207);
+    /* border: 1px solid black; */
+    border: none;
+    border-radius: 5px;
+    color: black;
+    width: 100px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+}
+
+
+.errors{
+    color: rgb(241, 103, 103);
+}
+
+.inputContainer label{
+    font-weight: bolder;
+    color: white;
+}

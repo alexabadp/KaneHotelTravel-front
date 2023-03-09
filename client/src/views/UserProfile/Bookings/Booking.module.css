@@ -1,0 +1,35 @@
+.bookings{
+    width: 100%;
+    min-height: 300px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.titleBookings{
+    margin-top: 10px;
+    padding: 50px;
+    font-weight: bolder;
+}
+
+.bookingContainer{
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 70%;
+    margin: 20px;
+    margin-left: 70px;
+    border: none;
+    background-color: #273245;
+    border-radius: 5px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.356);
+    color: rgb(255, 255, 255);
+    transition: all 0.3s;
+}
+
+.dato{
+    margin: 10px;
+}

@@ -5,6 +5,7 @@ import {
   GET_ACTIVITY_DETAIL,
   GET_HOTELS,
   GET_ACTIVITIES,
+  GET_BOOKINGS,
 } from "./actions";
 
 const initialState = {
@@ -14,6 +15,7 @@ const initialState = {
   detailActivity: [],
   hotels: [],
   activities: [],
+  bookings: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -50,6 +52,11 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         activities: action.payload,
       };
+    case GET_BOOKINGS:
+      return {
+        ...state,
+        bookings: action.payload,
+      }
     default:
       return {
         ...state,

@@ -1,16 +1,13 @@
-import styles from "./NavBarfooter.module.css";
+import styles from "./Footer.module.css";
 import Logo from "../img/logo.jpg"
 import { Link } from "react-router-dom";
 
-const NavBarFooter = () => {
+const Footer = () => {
 
   return (
     <div className={styles.navBarFooterContainer}>
         <div className={styles.containerLinks}>
-            <a className={styles.links} href="#MejoresPrecios">Mejores Precios</a>
-            <a className={styles.links} href="#Recomendados">Recomendados</a>
-            <a className={styles.links} href="#AlojamientosVIP">Alojamientos VIP</a>
-            <a className={styles.links} href="#Arriba">Arriba</a>
+
         </div>
         <nav>
             <div className={styles.navBarFooterContainer2}>
@@ -41,4 +38,4 @@ const NavBarFooter = () => {
   );
 };
 
-export default NavBarFooter;
+export default Footer;

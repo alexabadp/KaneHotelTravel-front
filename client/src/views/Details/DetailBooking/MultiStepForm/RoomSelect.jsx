@@ -1,54 +1,51 @@
 import "react-datepicker/dist/react-datepicker.css";
 import "react-calendar/dist/Calendar.css";
-import { useEffect } from "react";
 import Select from "react-select";
 import Calendar from "react-calendar";
-import React from "react";
+import React, { useEffect } from "react";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
-import style from "./Detail.module.css";
+import style from "./DetailRoom.module.css";
 import Row from "react-bootstrap/esm/Row";
 
 const RoomSelect = ({
-  setActive,
-  location,
+  setDisable,
   data,
-  error,
   datosRoom,
   handlerOption,
   handleDelete,
   formatDate,
   setCheckIn,
   dateValue,
-}) => {
-  useEffect(() => {
-    if (
-      !error.name &&
-      !error.lastname &&
-      !error.email &&
-      !error.typeEmail &&
-      !error.phone &&
-      !error.typePhone &&
-      !error.id &&
-      !error.idType &&
-      !error.rooms &&
-      !error.checkin
-    ) {
-      setActive(true);
-    } else {
-      setActive(false);
-    }
-  }, [error]);
+  error,
+  page
+}) => { 
+useEffect(() => {
+  setDisable(false)
+}, [error])
+
+page == 1 ?
+useEffect(() => {
+  if (
+    !error.rooms &&
+    !error.checkin
+  ) {
+    setDisable(true);
+  } else {
+    setDisable(false);
+  }
+}, [error]) : setDisable(true) 
   return (
-    <div className={style.genelaContainer}>
-      <div className={style.calendarContainer}>
+    <div className={style.detailBookingContainer}>
+      <div>
         <Form>
           <Row>
-            <Form.Group as={Col} class="w-50">
+            <Form.Group>
               <Form.Label className={style.titleBooking}>
                 Habitaciones
               </Form.Label>
               <Select
+                className={style.select}
                 value={data.rooms[0] ? data.rooms[0] : ""}
                 options={datosRoom}
                 placeholder="Seleccione la Habitacion"
@@ -61,20 +58,18 @@ const RoomSelect = ({
               Fechas de Check-In / Check-Out
             </Form.Label>
             <Form.Group as={Col}>
-              <div className={style.alinItem}>
-                <Calendar
-                  minDate={new Date()}
-                  selectRange={true}
-                  onChange={(e) => setCheckIn(e)}
-                  value={dateValue}
-                />
-                {error.checkin && (
-                  <span className={style.fail}>{error.checkin}</span>
-                )}
-                {error.checkout && (
-                  <span className={style.fail}>{error.checkout}</span>
-                )}
-              </div>
+              <Calendar
+                minDate={new Date()}
+                selectRange={true}
+                onChange={(e) => setCheckIn(e)}
+                value={dateValue}
+              />
+              {error.checkin && (
+                <span className={style.fail}>{error.checkin}</span>
+              )}
+              {error.checkout && (
+                <span className={style.fail}>{error.checkout}</span>
+              )}
               <div>
                 <div>
                   {dateValue[0] && dateValue[1] > 1 && (
@@ -88,51 +83,172 @@ const RoomSelect = ({
                 </div>
               </div>
             </Form.Group>
-              <Form.Group as={Col} class="form-horizontal">
+            <Form.Group className={style.checkList}>
+              <Form.Label className={style.titleBooking}>
+                Servicios Includos
+              </Form.Label>
+              <div className={style.input}>
+                <div>
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="flexCheckChecked"
+                    checked
+                  />
+                  <label className={style.lista} for="flexCheckChecked">
+                   Vista
+                  </label>
+                </div>
+                <div>
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="flexCheckChecked"
+                    checked
+                  />
+                  <label className={style.lista} for="flexCheckChecked">
+                   Frigo Bar
+                  </label>
+                </div>
+                <div>
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="flexCheckChecked"
+                    checked
+                  />
+                  <label className={style.lista} for="flexCheckChecked">
+                  Wifi gratis
+                  </label>
+                </div>
+                <div>
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="flexCheckChecked"
+                    checked
+                  />
+                  <label className={style.lista} for="flexCheckChecked">
+                    Lavanderia
+                  </label>
+                </div>
+                <div>
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="flexCheckChecked"
+                    checked
+                  />
+                  <label className={style.lista} for="flexCheckChecked">
+                    Concergeria 24/7
+                  </label>
+                </div>
+                <div>
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="flexCheckChecked"
+                    checked
+                  />
+                  <label className={style.lista} for="flexCheckChecked">
+                    Caja de Seguridad
+                  </label>
+                </div>
+                <div>
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="flexCheckChecked"
+                    checked
+                  />
+                  <label className={style.lista} for="flexCheckChecked">
+                    Aire Acondicionado
+                  </label>
+                </div>
+                <div>
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="flexCheckChecked"
+                    checked
+                  />
+                  <label className={style.lista} for="flexCheckChecked">
+                   Servicio a la Habitacion
+                  </label>
+                </div>
+              </div>
+            </Form.Group>
+            <Form.Group className={style.checkList1}>
+            <Form.Label className={style.titleBooking}>
+                Nuestras Habitaciones
+              </Form.Label>
+            <div className={style.input}>
+                <div>
+                </div>
+                <div>
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="flexCheckChecked"
+                    checked
+                  />
+                  <label className={style.lista} for="flexCheckChecked">
+                   1-Persona / Cama individual
+                  </label>
+                </div>
+                <div>
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="flexCheckChecked"
+                    checked
+                  />
+                  <label className={style.lista} for="flexCheckChecked">
+                    2-Personas / Cama Doble
+                  </label>
+                </div>
+              </div>
             </Form.Group>
           </Row>
         </Form>
       </div>
-      <div className={style.detalle}>
-        <img
-          class={style.detalleImage}
-          src={location.state.image}
-          alt="Imagen"
-        />
-        <div class=" align-items-end">
-          <h2 className={style.detalleTitulo}>Hotel: {location.state.name}</h2>
-          <p>
-            This is a wider card with supporting text below as a natural lead-in
-            to additional content. This content is a little bit longer.
-          </p>
-          <div>
-            <h3 className={style.title1}>Habitaciones selecionadas</h3>
-            <div>
-                {data.rooms?.map((element) => {
-                  return data.image?.map((f) => {
-                    if (element === f.name) {
-                      return (
-                        <>
-                          <div key={f.name} className={style.roomDetail}>
-                            <div>
-                              <button
-                                type="button"
-                                onClick={() => handleDelete(f.name)}
-                                className={style.btnDelete}
-                              >
-                                X
-                              </button>
-                              <h2>{f.name}</h2>
-                              <img className={style.detalleImage} key={f.image} src={f.image} alt="Image" />
-                            </div>
-                          </div>
-                        </>
-                      );
-                    }
-                  });
-                })}
-              </div>
-          </div>
+      <div>
+        <h3 className={style.title1}>Habitaciones selecionadas</h3>
+        <div className={style.image}>
+          {data.rooms?.map((element) => {
+            return data.image?.map((f) => {
+              if (element === f.name) {
+                return (
+                  <div>
+                    <div key={f.name} className={style.roomTitle}>
+                      <button
+                        type="button"
+                        onClick={() => handleDelete(f.name)}
+                        className={style.btnDelete}
+                      >
+                        X
+                      </button>
+                      <h2>{f.name}</h2>
+                    </div>
+                    <div className={style.roomTitle}>
+                      <img key={f.image} src={f.image} alt="Image" />
+                      <h5>{f.description}</h5>
+                    </div>
+                  </div>
+                );
+              }
+            });
+          })}
         </div>
       </div>
     </div>

@@ -2,12 +2,14 @@ import { Link, useParams } from "react-router-dom";
 import ActivityCard from "../ActivityCard/ActivityCard";
 import style from "./ActivityContainer.module.css";
 
+
 const ActivityContainer = (props) => {
+  
   const params = useParams();
 
   const city = params.city;
 
-  const activities = props.activities;
+  const activities = props.activities
 
   return (
     <div className={style.activityContainer}>

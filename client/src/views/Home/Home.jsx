@@ -11,13 +11,15 @@ import { useAuth0 } from "@auth0/auth0-react";
 import NavBar from "../../components/NavBar/NavBar";
 import Landing from "../Landing/Landing";
 
-
 const Home = () => {
   const dispatch = useDispatch();
   const { isAuthenticated } = useAuth0();
+
+  console.log("prueba de ejecucion de componente Home");
+
   useEffect(() => {
     dispatch(getCities());
-  });
+  }, [dispatch]);
 
   return (
     <div className={style.homeContainer}>

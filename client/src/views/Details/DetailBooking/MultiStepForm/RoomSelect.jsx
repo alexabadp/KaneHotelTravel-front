@@ -1,38 +1,40 @@
 import "react-datepicker/dist/react-datepicker.css";
 import "react-calendar/dist/Calendar.css";
-import { useEffect } from "react";
 import Select from "react-select";
 import Calendar from "react-calendar";
-import React from "react";
+import React, { useEffect } from "react";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import style from "./DetailRoom.module.css";
 import Row from "react-bootstrap/esm/Row";
 
 const RoomSelect = ({
-  setActive,
+  setDisable,
   data,
-  error,
   datosRoom,
   handlerOption,
   handleDelete,
   formatDate,
   setCheckIn,
   dateValue,
-  page,
-}) => {
-  
-  useEffect(() => {
-    
-    if (
-      !error.rooms &&
-      !error.checkin
-    ) {
-      setActive(true);
-    } else {
-      setActive(false);
-    }
-  }, [page]);
+  error,
+  page
+}) => { 
+useEffect(() => {
+  setDisable(false)
+}, [error])
+
+page == 1 ?
+useEffect(() => {
+  if (
+    !error.rooms &&
+    !error.checkin
+  ) {
+    setDisable(true);
+  } else {
+    setDisable(false);
+  }
+}, [error]) : setDisable(true) 
   return (
     <div className={style.detailBookingContainer}>
       <div>

@@ -15,6 +15,7 @@ import SuccessfulReservation from "../../../components/SuccessfulReservation/Suc
 
 function validate(data, dateValue) {
   const errors = {};
+  const errors1 = {}
   if (!data.name) errors.name = "El Nombre es requerido";
   if (!data.lastname) errors.lastname = "El Apellido es requerido";
   if (!data.email) errors.email = "El Correo es requerido";
@@ -29,7 +30,7 @@ function validate(data, dateValue) {
   if (isNaN(data.id) || data.id.length > 8)
     errors.idType = "El tipo de Dni es invalido";
   if (!data.rooms.length) errors.rooms = "Selecciona la habitacion a reservar";
-  if (!dateValue[0]) errors.checkin = "La fecha de Check-In es requerida";
+  if (!dateValue[1]) errors.checkin = "La fecha de Check-In es requerida";
   return errors;
 }
 
@@ -66,12 +67,11 @@ const DetailBooking = () => {
     "pk_test_51MeUSYJo5kAZGuTWTiN6NsA5FRMyqId8smjQOgEObJw8rbCeHijt3N58dI0J5HfF48lROYvHLIzLE2QjAk8skODA00D3KU6iNb"
   );
   const [error, setError] = useState({});
-  const [botonActive, setActive] = useState(true);
+  const [botonActive, setDisable] = useState(true);
 
   useEffect(() => {
     const validations = validate(data, dateValue);
     setError(validations);
-    setActive(true);
   }, [data]);
 
   //formato de fecha
@@ -195,7 +195,7 @@ const DetailBooking = () => {
       return (
         <RoomSelect
           page={page}
-          setActive={setActive}
+          setDisable={setDisable}
           location={location}
           error={error}
           data={data}
@@ -227,6 +227,11 @@ const DetailBooking = () => {
     }
   };
   useEffect(() => {
+    setDisable(false)
+  }, [error])
+  
+  page == 0 ?
+  useEffect(() => {
     if (
       !error.name &&
       !error.lastname &&
@@ -235,17 +240,27 @@ const DetailBooking = () => {
       !error.phone &&
       !error.typePhone &&
       !error.id &&
-      !error.idType
+      !error.idType 
     ) {
-      setActive(true);
+      setDisable(true);
     } else {
-      setActive(false);
+      setDisable(false);
+    }
+  }, [error]) :
+
+  useEffect(() => {
+    if (
+      !error.rooms &&
+      !error.checkin
+    ) {
+      setDisable(true);
+    } else {
+      setDisable(false);
     }
   }, [error]);
 
-  console.log(data.hotel);
   return successfulReservation ? (
-    <SuccessfulReservation res={reservationResponse} hotel={data.hotel} />
+    <SuccessfulReservation res={reservationResponse} city={location.state.city} />
   ) : (
     <div className={style.containerBookingGeneral}>
       <NavBar />

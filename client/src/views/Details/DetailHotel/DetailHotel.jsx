@@ -15,11 +15,11 @@ const DetailHotel = () => {
   const params = useParams();
   const location = useLocation();
   const detailHotel = useSelector((state) => state.detailHotel);
-  console.log(detailHotel)
+  
   useEffect(() => {
     dispatch(getDetailHotel(params.hotel));
   }, []);
-  console.log(detailHotel, "detalle del hotel")
+ 
   return (
     <div className={styles.containerDetailHotel}>
       <NavBar />
@@ -52,6 +52,7 @@ const DetailHotel = () => {
               to="/detail/booking"
               state={{
                 id: detailHotel.id,
+                city: params.city,
                 name: detailHotel.name,
                 image: detailHotel.image,
                 rooms: detailHotel.rooms,

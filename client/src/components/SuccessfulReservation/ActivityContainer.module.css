@@ -1,0 +1,79 @@
+@import url(https://fonts.googleapis.com/css?family=Varela+Round);
+
+h1 {
+  color: hsla(0, 0%, 0%, 0.9);
+  font: normal 40px Varela Round, sans-serif;
+  height: auto;
+  animation: move linear 3000ms infinite;
+}
+
+@keyframes move {
+  0% {
+    text-shadow:  -1px -1px 0 rgb(208, 255, 0), 
+    1px 1px 0 hsla(0, 100%, 50%, 1);
+  }
+  25% {
+    text-shadow: 
+      -1px -1px 0 hsla(180, 100%, 50%, 1), 
+      1px 1px 0 hsla(0, 100%, 50%, 1);
+  }
+  50% {
+    text-shadow: 
+      -1px 1px 0 hsla(0, 100%, 50%, 1), 
+      1px -1px 0 hsla(180, 100%, 50%, 1);
+  }
+  75% {
+    text-shadow: 
+      1px 1px 0 hsla(180, 100%, 50%, 1), 
+      -1px -1px 0 hsla(0, 100%, 50%, 1);
+  }
+  100% {
+    text-shadow: 
+      1px -1px 0 hsla(0, 100%, 50%, 1), 
+      -1px 1px 0 rgb(115, 255, 0);
+  }
+}
+
+.card {
+  display: flex;
+}
+.main {
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 15px;  
+}
+.div{
+  display: flex;
+  align-items: center;
+}
+.div section{
+  margin: auto;
+  text-align: center;
+}
+.letra {
+  font-style: oblique;
+  font-size: 25px;
+}
+.activityContainer {
+  max-width: 1000px;
+  margin: auto;
+  margin-top: 7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.activityContainerCards {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-auto-rows: minmax(480px, auto);
+  align-items: center;
+  justify-content: center;
+  cursor: default;
+}
+
+.activityContainerCards div {
+  margin: auto;
+}

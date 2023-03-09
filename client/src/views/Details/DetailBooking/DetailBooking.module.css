@@ -60,6 +60,7 @@ body {
   align-items: flex-start;
   width: 98vw;
   height: 30vh;
+  object-fit: none;
 }
 
 .titleBooking {

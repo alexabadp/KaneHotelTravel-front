@@ -26,29 +26,50 @@ const BookingBuy = ({
         <div>
           <Form>
             <Modal show={show} onHide={handleClose} className={style.modal}>
-              <Modal.Header closeButton>
+              <Modal.Header closeButton className={style.tituloBooking}>
                 <Modal.Title>Detalle de la Reserva</Modal.Title>
               </Modal.Header>
               <Modal.Body className={style.body}>
-                <ul className={style.titleBooking}>
-                  <p className={style.titleBooking}>
-                    Hotel: {location.state.name}
+                <div className={style.containerDiv}>
+                  <div className={style.h3Div}>
+                  <h3 className={style.h3}>Hotel:</h3>
+                  <p className={style.titleBooking}>{location.state.name}</p>
+                  </div>
+                  <div className={style.h3Div}>
+                  <h3 className={style.h3}>Nombre:</h3>
+                  <p className={style.titleBooking}>                    
+                    {data.name}
                   </p>
-                  <p className={style.titleBooking}>Nombre: {data.name}</p>
-                  <p className={style.titleBooking}>
-                    Apellido: {data.lastname}
-                  </p>
-                  <p className={style.titleBooking}>ID: {data.id}</p>
-                  <p className={style.titleBooking}>
-                    Habitaciones:{" "}
-                    {data.rooms.map((e) => {
-                      return <p key={e}>{e}</p>;
-                    })}
-                  </p>
-                  <p className={style.titleBooking}>
-                    Precio Total: ${data.price}
-                  </p>
-                </ul>
+                  </div>
+                  <div className={style.h3Div}>
+                  <h3 className={style.h3}>Apellido:</h3> 
+                    <p className={style.titleBooking}>
+                      {data.lastname}
+                    </p>
+                  </div>
+
+                  <div className={style.h3Div}>
+                  <h3 className={style.h3}>ID:</h3>
+                    <p className={style.titleBooking}>
+                       {data.id}
+                    </p>
+                  </div>
+
+                  <div className={style.h3Div}>
+                  <h3 className={style.h3}>Habitaciones:</h3>
+                     {data.rooms.map((e) => {
+                        return <p className={style.p} key={e}>{e}</p>;
+                      })}
+                  </div>
+
+                  <div className={style.h3Div}>
+                  <h3 className={style.h3}>Precio Total:</h3> 
+                    <p className={style.titleBooking}>
+                      ${data.price}
+                    </p>
+                  </div>
+                </div>
+
                 <div className={style.stripe}>
                   <Form.Group className="mb-3" controlId="formGridEmail">
                     <Elements stripe={stripePromise}>
@@ -65,7 +86,7 @@ const BookingBuy = ({
               </Modal.Body>
               <Modal.Footer className={style.footer}>
                 <Link to={`/`}>
-                  <Button className={style.button} variant="primary">
+                  <Button className={style.button} variant="secondary">
                     Cancelar
                   </Button>
                 </Link>

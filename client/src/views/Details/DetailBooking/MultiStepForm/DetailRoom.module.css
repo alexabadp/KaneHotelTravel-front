@@ -47,7 +47,8 @@
   flex-direction: row;
   flex-wrap: wrap;
   align-items: flex-start;
-  text-align: start;    
+  text-align: start; 
+  gap: 5px;   
  }
  .roomTitle{
   display: flex;

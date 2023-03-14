@@ -23,3 +23,6 @@ const ActivityCard = (props) => {
 };
 
 export default ActivityCard;
+
+
+// Este es un commentario
